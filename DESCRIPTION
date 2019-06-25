@@ -1,0 +1,25 @@
+Package: TMEscore
+Type: Package
+Title: Calculate Tumor microenvironment score
+Version: 1.0.0
+Author: Dongqiang Zeng
+Maintainer: Dognqiang Zeng <dongqiangzeng0808@gmail.com>
+Description: Provides functionality to calculate Tumor microenvironment (TME) score 
+             and some functions to visulize TME data.
+             Citation: Zeng DQ#, Li MY#, Zhou R, Zhang JW, Sun HY, Shi M, Bin JP, Liao YL, Rao JJ, Liao WJ*, 
+                       'Tumor microenvironment characterization in gastric cancer identifies prognostic and 
+                       immunotherapeutically relevant gene signatures.'
+                       2019, Cancer Immunology Research
+                       PMID: 30842092
+                       DOI: 10.1158/2326-6066.CIR-18-0436
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+    survival,
+    survminer,
+RoxygenNote: 6.1.0
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
