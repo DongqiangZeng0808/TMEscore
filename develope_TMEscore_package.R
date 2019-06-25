@@ -75,6 +75,15 @@ git commit -m "first commit"
 git remote add origin git@github.com:DongqiangZeng0808/TMEscore.git
 git push -u origin master
 
+
+#' @更新代码和信息用以下shell脚本
+#' @https://www.cnblogs.com/bigtreei/p/10180383.html
+git add .
+git commit -m "R"
+git pull --rebase origin master
+git push origin master
+
+
 #' @or push an existing repository from the command line
 git remote add origin git@github.com:DongqiangZeng0808/TMEscore.git
 git push -u origin master
