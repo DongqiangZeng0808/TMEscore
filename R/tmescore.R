@@ -69,6 +69,6 @@ tmescore<-function(eset = eset,pdata = pdata, method = method){
   #' TMEscore = TMEscoreA - TMEscoreB
   pdata$TMEscore<-pdata$TMEscoreA-pdata$TMEscoreB
   #####################
-
+  return(pdata)
 }
 
