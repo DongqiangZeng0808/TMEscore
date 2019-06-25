@@ -33,7 +33,6 @@ tmescore<-function(eset = eset,pdata = pdata, method = method){
     msg2<-print("expression set data(eset) and phenotype data(pdata) did not have the same length, please modify")
 
   ###############################
-  source("gsScore.R")
   goi <- names(signature);goi
   for (sig in goi) {
     pdata[, sig] <- NA
