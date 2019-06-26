@@ -1,9 +1,9 @@
 TMEscore
 =====================================
 
-[![DOI](https://www.ncbi.nlm.nih.gov/pubmed/30842092)]
+TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the "TMEscore" [1]
 
-TMEscore is a R package to do Tumor microenvironment analysis [1] Main advantages:
+TMEscore is a R package to do Tumor microenvironment analysis. Main advantages:
 - Provides functionality to calculate Tumor microenvironment (TME) score (PCA, ssGSEA, and z-score)
 - Functions to visulize TME data.
 - Deconvolution of cellular composition of tumor.
@@ -24,4 +24,7 @@ help('tmescore', 'TMEscore')
 
 References
 ----------
-[1] Zeng DQ#, Li MY#, Zhou R, Zhang JW, Sun HY, Shi M, Bin JP, Liao YL, Rao JJ, Liao WJ*, Tumor microenvironment characterization in gastric cancer identifies prognostic and imunotherapeutically relevant gene signatures. 2019, Cancer Immunology Research. PMID: 30842092; DOI: 10.1158/2326-6066.CIR-18-0436
+[1] Zeng DQ#, Li MY#, Zhou R, Zhang JW, Sun HY, Shi M, Bin JP, Liao YL, Rao JJ, Liao WJ*, Tumor microenvironment characterization in gastric cancer identifies prognostic and imunotherapeutically relevant gene signatures. 2019, Cancer Immunology Research. 
+DOI: 10.1158/2326-6066.CIR-18-0436
+PMID: *(`30842092`_) 
+.._`30842092`: https://www.ncbi.nlm.nih.gov/pubmed/30842092
