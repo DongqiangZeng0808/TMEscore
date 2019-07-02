@@ -1,4 +1,7 @@
+TMEscore
+=====================================
 
+<<<<<<< HEAD
 TMEscore
 =====================================
 
@@ -10,6 +13,16 @@ TMEscore is a R package to do Tumor microenvironment analysis. Main advantages:
 - Deconvolution of cellular composition of tumor.
 - Identify TME relevant mutaions.
 
+=======
+TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the "TMEscore" [1]
+
+TMEscore is a R package to do Tumor microenvironment analysis. Main advantages:
+- Provides functionality to calculate Tumor microenvironment (TME) score (PCA, ssGSEA, and z-score)
+- Functions to visulize TME data.
+- Deconvolution of cellular composition of tumor.
+- Identify TME relevant mutaions.
+
+>>>>>>> c25f40d1f21c0e52778ca8cc186ed2be565b825b
 The package is not yet on CRAN.
 You can install from Github:
 
@@ -26,7 +39,11 @@ help('tmescore', 'TMEscore')
 Example
 
 ``` r
+<<<<<<< HEAD
 tmescore_acrg<-tmescore(eset = eset_acrg, pdata = pdata, method = "pca")
+=======
+tmescore_acrg<-tmescore(eset = eset, pdata = pdata, method = "pca")
+>>>>>>> c25f40d1f21c0e52778ca8cc186ed2be565b825b
 head(tmescore_acrg)
       ID      time    status km.cluster.IP TMEscoreA   TMEscoreB    TMEscore
 1 GSM1523727  88.73      0   TMEclusterC -0.60373345 -0.9236988597  0.31996541
