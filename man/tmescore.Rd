@@ -2,9 +2,9 @@
 % Please edit documentation in R/tmescore.R
 \name{tmescore}
 \alias{tmescore}
-\title{calculate TMEscore}
+\title{Calculate TMEscore}
 \usage{
-tmescore(eset = eset, pdata = pdata, method = method)
+tmescore(eset, pdata, method = "pca")
 }
 \arguments{
 \item{eset}{normalized expression data use function: scale(); with human gene symbol in rows and patients ID in columns;}
@@ -17,12 +17,12 @@ tmescore(eset = eset, pdata = pdata, method = method)
 pdata with TMEscoreA, TMEscoreB and TMEscore
 }
 \description{
-calculate TMEscore
+Calculate TMEscore
 }
 \examples{
 library('tidyverse')
 # system.file("extdata","example.RData",package = "TMEscore")
-tmescore<-tmescore(eset = eset,pdata = pdata,method = "pca")
+tmescore<-tmescore(eset = eset_acrg,pdata = pdata,method = "pca")
 
 TMEscore = TMEscoreA - TMEscoreB
 }

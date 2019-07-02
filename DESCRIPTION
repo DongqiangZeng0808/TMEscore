@@ -1,7 +1,7 @@
 Package: TMEscore
 Type: Package
 Title: Calculate Tumor microenvironment score
-Version: 1.0.0
+Version: 1.1.0
 Author: Dongqiang Zeng
 Maintainer: Dongqiang Zeng <dongqiangzeng0808@gmail.com>
 Description: Provides functionality to calculate Tumor microenvironment (TME) score and some functions to visulize TME data. 
@@ -14,7 +14,11 @@ LazyData: true
 RoxygenNote: 6.1.0
 Imports:
     survival,
-    survminer
+    survminer,
+    e1071,
+    parallel,
+    preprocessCore
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr

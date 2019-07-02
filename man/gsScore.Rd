@@ -4,7 +4,7 @@
 \alias{gsScore}
 \title{Calculate score across genes and samples}
 \usage{
-gsScore(gm, summarizationFunction = "PC")
+gsScore(gm, summarizationFunction = "pca")
 }
 \arguments{
 \item{gm}{normalized count matrix; rows are all genes in the signature that shall be summarized into one score; columns are samples}

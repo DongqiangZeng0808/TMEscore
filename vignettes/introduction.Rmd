@@ -1,6 +1,6 @@
 ---
 title: "TMEscore"
-author: "Dongqiang Zeng"
+author: "Dongqiagn Zeng"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

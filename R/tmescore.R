@@ -13,8 +13,8 @@
 ##' @return numeric vector of length ncol(gm); a score summarizing the rows of gm
 ##' @author Dorothee Nickles
 ##' @export
-gsScore <- function(gm, summarizationFunction="PC") {
-  if (summarizationFunction == "PC") {
+gsScore <- function(gm, summarizationFunction="pca") {
+  if (summarizationFunction == "pca") {
     pc <- prcomp(t(gm),
                  retx=TRUE)
     gss <- pc$x[,1] * sign(cor(pc$x[,1], colMeans(gm)))
@@ -26,7 +26,7 @@ gsScore <- function(gm, summarizationFunction="PC") {
 
 
 
-#' calculate TMEscore
+#' Calculate TMEscore
 #'
 #' @param eset normalized expression data use function: scale(); with human gene symbol in rows and patients ID in columns;
 #' @param pdata phenotype data with patients' ID or other clinical data in columns;the number of rows in pdata should be equal to the number of columns in eset
@@ -38,10 +38,10 @@ gsScore <- function(gm, summarizationFunction="PC") {
 #' @examples
 #' library('tidyverse')
 #' # system.file("extdata","example.RData",package = "TMEscore")
-#' tmescore<-tmescore(eset = eset,pdata = pdata,method = "pca")
+#' tmescore<-tmescore(eset = eset_acrg,pdata = pdata,method = "pca")
 #'
 
-tmescore<-function(eset = eset,pdata = pdata, method = method){
+tmescore<-function(eset, pdata, method = "pca"){
 
   #check genes in expressionset
   feature_ids <- rownames(eset)
