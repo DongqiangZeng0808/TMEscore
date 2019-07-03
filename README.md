@@ -1,6 +1,6 @@
-#TMEscore
-=====================================
-=====================================
+# TMEscore
+--------------------------------------
+--------------------------------------
 
 TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the "TMEscore" [1]
 
@@ -10,7 +10,7 @@ TMEscore is a R package to do Tumor microenvironment analysis. Main advantages:
 - Deconvolution of cellular composition of tumor.
 - Identify TME relevant mutaions.
 
-=======
+
 TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the "TMEscore" [1]
 
 TMEscore is a R package to do Tumor microenvironment analysis. Main advantages:
