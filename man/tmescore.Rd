@@ -4,14 +4,20 @@
 \alias{tmescore}
 \title{Calculate TMEscore}
 \usage{
-tmescore(eset, pdata, method = "pca")
+tmescore(eset, pdata = NULL, column_of_sample = "ID", method = "PCA",
+  print_gene_pro = FALSE)
 }
 \arguments{
-\item{eset}{normalized expression data use function: scale(); with human gene symbol in rows and patients ID in columns;}
+\item{eset}{normalized expression data use function: scale(); with human gene symbol in rows and patient identifier in columns;}
 
-\item{pdata}{phenotype data with patients' ID or other clinical data in columns;the number of rows in pdata should be equal to the number of columns in eset}
+\item{pdata}{phenotype data with patient identifier or other clinical data in columns; 
+the number of rows in pdata should be equal to the number of columns in eset}
 
-\item{method}{use PCA(default) or z-score function to calculate TMEscore}
+\item{column_of_sample}{Defines in which column of pdata the sample identifier can be found.}
+
+\item{method}{use PCA (default) or z-score function to calculate TMEscore}
+
+\item{print_gene_pro}{print signature gene propotion, default is FALSE}
 }
 \value{
 pdata with TMEscoreA, TMEscoreB and TMEscore
@@ -20,11 +26,9 @@ pdata with TMEscoreA, TMEscoreB and TMEscore
 Calculate TMEscore
 }
 \examples{
-library('tidyverse')
-# system.file("extdata","example.RData",package = "TMEscore")
-tmescore<-tmescore(eset = eset_acrg,pdata = pdata,method = "pca")
 
-TMEscore = TMEscoreA - TMEscoreB
+tmescore<-tmescore(eset = eset_stad,pdata = pdata_stad,column_of_sample = "ID")
+
 }
 \author{
 Dongqiang Zeng
