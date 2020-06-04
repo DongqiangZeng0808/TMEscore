@@ -4,17 +4,9 @@
 
 TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the "TMEscore" [1]
 
-TMEscore is an R package to evaluate Tumor microenvironment. Main advantages:
-- Provides functionality to calculate Tumor microenvironment (TME) score (PCA and z-score)
-- Functions to visulize TME data.
-
-
-TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the "TMEscore" [1]
-
 TMEscore is a R package to do Tumor microenvironment analysis. Main advantages:
-- Provides functionality to calculate Tumor microenvironment (TME) score (PCA, ssGSEA, and z-score)
+- Provides functionality to calculate Tumor microenvironment (TME) score (PCA or z-score)
 - Functions to visulize TME data.
-- Deconvolution of cellular composition of tumor.
 - Identify TME relevant mutaions.
 
 The package is not yet on CRAN. You can install from Github:
