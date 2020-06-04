@@ -40,4 +40,5 @@ References
 [1] Zeng DQ#, Li MY#, Zhou R, Zhang JW, Sun HY, Shi M, Bin JP, Liao YL, Rao JJ, Liao WJ*, Tumor microenvironment characterization in gastric cancer identifies prognostic and imunotherapeutically relevant gene signatures. 2019, Cancer Immunology Research. 2019, 7(5), 737-750
 DOI: 10.1158/2326-6066.CIR-18-0436
 PMID: [30842092](https://www.ncbi.nlm.nih.gov/pubmed/30842092)
-# TMEscore
+
+Contact: dongqiangzeng0808@gmail.com
