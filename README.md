@@ -18,6 +18,7 @@ devtools::install_github("DongqiangZeng0808/TMEscore")
 Main documentation is on the `tmescore` function in the package:
 
 ``` r
+library('TMEscore')
 help('tmescore')
 ```
 
