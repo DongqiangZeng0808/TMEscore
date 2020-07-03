@@ -5,11 +5,12 @@ Version: 0.1.3
 Author: Dongqiang Zeng
 Maintainer: Dongqiang Zeng <dongqiangzeng0808@gmail.com>
 Description: We incorporated TME evaluation methodology into an open-source R package, TMEscore, 
-             to predict tumor immunogenicity and ICB sensitiveness from bulk transcriptomic data.
+             to predict tumor immunogenicity and ICBs sensitiveness from bulk transcriptomic data.
+             More about what it does (https://github.com/DongqiangZeng0808/TMEscore)
 License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-Imports:
+Depends:
     survival,
     survminer,

@@ -5,7 +5,7 @@
 \title{Calculate TMEscore}
 \usage{
 tmescore(eset, pdata = NULL, column_of_sample = "ID", method = "PCA",
-  print_gene_pro = FALSE)
+  print_gene_pro = FALSE, classify = FALSE)
 }
 \arguments{
 \item{eset}{normalized expression data use function: scale(); with human gene symbol in rows and patient identifier in columns;}
@@ -18,6 +18,8 @@ the number of rows in pdata should be equal to the number of columns in eset}
 \item{method}{use PCA (default) or z-score function to calculate TMEscore}
 
 \item{print_gene_pro}{print signature gene propotion, default is FALSE}
+
+\item{classify}{classifying TMEscore into two groups using survival data and function of suvmmer.}
 }
 \value{
 pdata with TMEscoreA, TMEscoreB and TMEscore

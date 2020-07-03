@@ -2,6 +2,44 @@
 
 
 
+
+#' Extract best cut-off and add new binary object to data frame
+#'
+#' @param pdata phenotype data with surcival information and features
+#' @param variable selected featrues that will be classified into two groups
+#' @param time column name of survival time
+#' @param status column name of event of follow up
+#' @param PrintResult logit, print results of survival analysis before and after classifying.
+#'
+#' @return pdata with binary variables
+#' @export
+#'
+#' @examples
+#'
+best_cutoff<-function(pdata,variable,time = "time",status = "status",PrintResult = T){
+  
+  colnames(pdata)[which(colnames(pdata)==time)]<-"time"
+  colnames(pdata)[which(colnames(pdata)==status)]<-"status"
+  y<-Surv(pdata$time,pdata$status)
+  iscutoff<-surv_cutpoint(pdata,time = "time",event = "status",variables =variable)
+  aa<-paste("best cutoff = ",iscutoff$cutpoint$cutpoint)
+  plot(iscutoff,variable,palette="npg")
+  bb<-summary(coxph(y~pdata[,which(colnames(pdata)==variable)],data =pdata))
+  variable2<-paste(variable,"_binary",sep = "")
+  pdata[,variable2]<-ifelse(pdata[,variable]<iscutoff$cutpoint$cutpoint,"Low","High")
+  pdata[,variable2]<-as.factor(pdata[,variable2])
+  cc<-summary(pdata[,variable2])
+  dd<-summary(coxph(y~pdata[,which(colnames(pdata)==variable2)],data =pdata))
+  if(PrintResult) {
+    print(list(best_cutoff=aa,cox_continuous_object=bb,summary_binary_variable = cc,cox_binary_object=dd))
+  }
+  return(pdata)
+}
+
+
+
+
+
 ##' Calculate siganture score using PCA function
 ##'
 ##'
@@ -35,6 +73,7 @@ sigScore <- function(eset, methods = "PCA") {
 #' @param method  use PCA (default) or z-score function to calculate TMEscore
 #' @param print_gene_pro print signature gene propotion, default is FALSE
 #' @param column_of_sample Defines in which column of pdata the sample identifier can be found.
+#' @param classify classifying TMEscore into two groups using survival data and function of suvmmer.
 #'
 #' @return pdata with TMEscoreA, TMEscoreB and TMEscore
 #' @export
@@ -44,7 +83,7 @@ sigScore <- function(eset, methods = "PCA") {
 #' tmescore<-tmescore(eset = eset_stad,pdata = pdata_stad,column_of_sample = "ID")
 #'
 
-tmescore<-function(eset, pdata = NULL, column_of_sample = "ID",method = "PCA",print_gene_pro = FALSE){
+tmescore<-function(eset, pdata = NULL, column_of_sample = "ID",method = "PCA",print_gene_pro = FALSE, classify = FALSE){
   
   
   #to prevent crashing on duplicated gene symbols, add unique numbers to identical names
@@ -127,6 +166,14 @@ tmescore<-function(eset, pdata = NULL, column_of_sample = "ID",method = "PCA",pr
     pdata[,"TMEscore"]<-pdata[,"TMEscoreA"]-pdata[,"TMEscoreB"]
   }
   #####################
+  if(classify & !c("time"%in%colnames(pdata) & "status"%in%colnames(pdata)) ) {
+   message("If survival data are provided, please transform column names of follow up data into 'time' and 'status' ")
+  }
+  
+  if(classify & "time"%in%colnames(pdata) &"status"%in%colnames(pdata)) {
+    pdata<-best_cutoff(pdata = pdata, variable = "TMEscore",time = "time",status = "status",PrintResult = F)
+  }
+  
   return(pdata)
 }
 
