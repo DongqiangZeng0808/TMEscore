@@ -1,6 +1,6 @@
 # TMEscore
 --------------------------------------
---------------------------------------
+
 
 TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the "TMEscore" [1]
 
@@ -25,7 +25,7 @@ help('tmescore')
 Example
 
 ``` r
-tmescore<-tmescore(eset = eset_stad, pdata = pdata_stad, colum_of_sample = "ID")
+tmescore<-tmescore(eset = eset_stad, pdata = pdata_stad, colum_of_sample = "ID",classify = T)
 head(tmescore_acrg)
           ID     subtype  time  OS_status TMEscoreA TMEscoreB  TMEscore
 284 TCGA-RD-A8N2    <NA> 118.00         0 -7.306563  13.24346 -20.55003
@@ -41,11 +41,5 @@ References
 [1] Zeng DQ#, Li MY#, Zhou R, Zhang JW, Sun HY, Shi M, Bin JP, Liao YL, Rao JJ, Liao WJ*, Tumor microenvironment characterization in gastric cancer identifies prognostic and imunotherapeutically relevant gene signatures. 2019, Cancer Immunology Research. 2019, 7(5), 737-750
 DOI: 10.1158/2326-6066.CIR-18-0436
 PMID: [30842092](https://www.ncbi.nlm.nih.gov/pubmed/30842092)
-<<<<<<< HEAD
-# TMEscore
-# Blasso
-=======
-
 
 E-mail any questions to dongqiangzeng0808@gmail.com
->>>>>>> 1f9051a74ca7e24f047be159456b3b12381bab2e
