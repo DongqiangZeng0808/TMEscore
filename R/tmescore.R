@@ -133,13 +133,11 @@ tmescore<-function(eset, pdata = NULL, column_of_sample = "ID",method = "PCA",pr
   #creat pdata if not provided
   if(is.null(pdata)){
     pdata<-data.frame("Index" = 1:length(colnames(eset)),"ID" = colnames(eset))
-  }
-  
-  ###############################
-  if(!dim(eset)[2]==dim(pdata)[1]) 
-    message("Expression set data (eset) and phenotype data (pdata) have different number of samples, 
+    ###############################
+    if(!dim(eset)[2]==dim(pdata)[1]) 
+      message("Expression set data (eset) and phenotype data (pdata) have different number of samples, 
             \n only samples with expression set provided will be estimated")
-  ##########################
+  }
   
   #match phenotype data and gene expression set
   ###########################
