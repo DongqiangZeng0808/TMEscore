@@ -4,8 +4,14 @@
 \alias{tmescore}
 \title{Calculate TMEscore}
 \usage{
-tmescore(eset, pdata = NULL, column_of_sample = "ID", method = "PCA",
-  print_gene_pro = FALSE, classify = FALSE)
+tmescore(
+  eset,
+  pdata = NULL,
+  column_of_sample = "ID",
+  method = "PCA",
+  print_gene_pro = FALSE,
+  classify = FALSE
+)
 }
 \arguments{
 \item{eset}{normalized expression data use function: scale(); with human gene symbol in rows and patient identifier in columns;}

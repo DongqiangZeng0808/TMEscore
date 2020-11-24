@@ -1,0 +1,63 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures",
+  out.width = "100%"
+)
+```
+
+# TMEscore
+
+### 1.Introduction
+TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the [TMEscore](https://cancerimmunolres.aacrjournals.org/content/7/5/737)
+
+
+TMEscore is a R package to do Tumor microenvironment analysis. Main advantages:
+- Provides functionality to calculate Tumor microenvironment (TME) score (PCA or z-score)
+- Functions to visulize TME data.
+- Identify TME relevant mutaions.
+
+### 2.Installation
+The package is not yet on CRAN. You can install from Github:
+```{r}
+# install.packages("devtools")
+if (!requireNamespace("TMEscore", quietly = TRUE))
+  devtools::install_github("DongqiangZeng0808/TMEscore")
+```
+
+### 3.Usage
+Main documentation is on the `tmescore` function in the package:
+
+```{r}
+library('TMEscore')
+```
+
+Example
+```{r}
+tmescore<-tmescore(eset = eset_stad, #expression data
+                   pdata = pdata_stad, #phenotype data
+                   method = "PCA",
+                   classify = T)
+head(tmescore)
+```
+```{r}
+tmescore<-tmescore[!is.na(tmescore$subtype),]
+library(ggplot2)
+p<-ggplot(tmescore,aes(x= subtype,y=TMEscore,fill=subtype))+
+  geom_boxplot(notch = F,outlier.shape = 1,outlier.size = 0.5)+
+  scale_fill_manual(values= c("#0073C2FF", "#CD534CFF", "#58CDD9","#D20A13" ))
+p+theme_light()+stat_compare_means(aes(label = paste0("p = ", ..p.format..)))
+```
+
+References
+----------
+Manuscript is under review.
+
+E-mail any questions to dongqiangzeng0808@gmail.com
