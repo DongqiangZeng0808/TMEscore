@@ -8,12 +8,14 @@
 TME infiltration patterns were determined and systematically correlated
 with TME cell phenotypes, genomic traits, and patient
 clinicopathological features to establish the
-[TMEscore](https://cancerimmunolres.aacrjournals.org/content/7/5/737)
+[TMEscore](https://cancerimmunolres.aacrjournals.org/content/7/5/737):Tumor
+Microenvironment Characterization in Gastric Cancer Identifies
+Prognostic and Immunotherapeutically Relevant Gene Signatures.
 
-TMEscore is a R package to do Tumor microenvironment analysis. Main
-advantages: - Provides functionality to calculate Tumor microenvironment
-(TME) score (PCA or z-score) - Functions to visulize TME data. -
-Identify TME relevant mutaions.
+TMEscore is an R package to perform tumor microenvironment analysis.
+Main advantages: 1. Provides functionality to calculate Tumor
+microenvironment (TME) score (PCA or z-score) 2. Functions to visualize
+TME data. 3. Identify TME relevant mutations.
 
 ### 2.Installation
 
@@ -49,8 +51,8 @@ Example
 ``` r
 tmescore<-tmescore(eset = eset_stad, #expression data
                    pdata = pdata_stad, #phenotype data
-                   method = "PCA",
-                   classify = T)
+                   method = "PCA", #default
+                   classify = T) #if true, survival data must be provided in pdata
 head(tmescore)
 #>               ID subtype   time status TMEscoreA TMEscoreB  TMEscore
 #> 284 TCGA-RD-A8N2    <NA> 118.00      0 -7.306563  13.24346 -20.55003
@@ -69,18 +71,29 @@ head(tmescore)
 ```
 
 ``` r
+#remove observation with missing value
 tmescore<-tmescore[!is.na(tmescore$subtype),]
-library(ggplot2)
+
 p<-ggplot(tmescore,aes(x= subtype,y=TMEscore,fill=subtype))+
   geom_boxplot(notch = F,outlier.shape = 1,outlier.size = 0.5)+
-  scale_fill_manual(values= c("#0073C2FF", "#CD534CFF", "#58CDD9","#D20A13" ))
-p+theme_light()+stat_compare_means(aes(label = paste0("p = ", ..p.format..)))
+  scale_fill_manual(values= c('#374E55FF', '#DF8F44FF', '#00A1D5FF', '#B24745FF'))
+
+comparision<-combn(unique(as.character(tmescore$subtype)), 2, simplify=F)
+
+p+theme_light()+stat_compare_means(comparisons = comparision,size=6)+stat_compare_means(size=6)
 ```
 
 <img src="man/figuresunnamed-chunk-5-1.png" width="100%" />
 
-## References
+### Citation
 
-Manuscript is under review.
+If you use TMEscore in published research, please cite: [Tumor
+microenvironment characterization in gastric cancer identifies
+prognostic and imunotherapeutically relevant gene
+signatures](https://cancerimmunolres.aacrjournals.org/content/7/5/737).
+Cancer Immunology Research, 2019, 7(5), 737-750. DOI:
+10.1158/2326-6066.CIR-18-0436, PMID: 30842092
+
+### Contact
 
 E-mail any questions to <dongqiangzeng0808@gmail.com>
