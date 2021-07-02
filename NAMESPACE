@@ -3,4 +3,7 @@
 export(best_cutoff)
 export(sigScore)
 export(tmescore)
+export(tmescore_estimation_helper)
+export(tmescore_location)
+export(tmescore_pcr)
 importFrom(utils,packageDescription)

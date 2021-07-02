@@ -95,7 +95,7 @@ tmescore<-function(eset, pdata = NULL, column_of_sample = "ID",method = "PCA",pr
     eset<-eset[!duplicated(rownames(eset)),]
   }
   ###################################
-
+  data(signature)
   #check genes in expression set
   ###################################
   freq1<-length(intersect(signature$TMEscoreA,rownames(eset)))/length(signature$TMEscoreA)

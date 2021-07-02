@@ -16,7 +16,7 @@ tmescore(
 \arguments{
 \item{eset}{normalized expression data use function: scale(); with human gene symbol in rows and patient identifier in columns;}
 
-\item{pdata}{phenotype data with patient identifier or other clinical data in columns; 
+\item{pdata}{phenotype data with patient identifier or other clinical data in columns;
 the number of rows in pdata should be equal to the number of columns in eset}
 
 \item{column_of_sample}{Defines in which column of pdata the sample identifier can be found.}
