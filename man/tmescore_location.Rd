@@ -7,6 +7,7 @@
 tmescore_location(
   score,
   vars = c("TMEscore", "TMEscoreA", "TMEscoreB"),
+  panel = "PFS",
   palette = "nrc",
   palette_line = "jama",
   showplot = TRUE,
@@ -17,6 +18,8 @@ tmescore_location(
 \item{score}{score}
 
 \item{vars}{default is TMEscore, TMEscroeA and TMEscoreB}
+
+\item{panel}{"PFS" or "ORR"}
 
 \item{palette}{palette of response}
 
