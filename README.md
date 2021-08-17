@@ -55,12 +55,12 @@ tmescore<-tmescore(eset = eset_stad, #expression data
                    classify = T) #if true, survival data must be provided in pdata
 head(tmescore)
 #>               ID subtype   time status TMEscoreA TMEscoreB  TMEscore
-#> 284 TCGA-RD-A8N2    <NA> 118.00      0 -7.306563  13.24346 -20.55003
-#> 95  TCGA-BR-A4IV      GS  28.97      1 -6.743132  12.61978 -19.36292
-#> 66  TCGA-BR-8371      GS  11.97      1 -7.024702  12.56123 -19.58593
-#> 69  TCGA-BR-8380      GS     NA      1 -5.855567  12.97473 -18.83030
-#> 101 TCGA-BR-A4J9      GS   0.47      0 -6.643521  11.98279 -18.62631
-#> 82  TCGA-BR-8592      GS   6.37      1 -5.143173  12.47427 -17.61744
+#> 284 TCGA-RD-A8N2    <NA> 118.00      0 -6.705998  11.66689 -18.37289
+#> 95  TCGA-BR-A4IV      GS  28.97      1 -6.376907  10.91756 -17.29446
+#> 66  TCGA-BR-8371      GS  11.97      1 -6.258413  10.94738 -17.20580
+#> 69  TCGA-BR-8380      GS     NA      1 -5.213597  11.38528 -16.59887
+#> 101 TCGA-BR-A4J9      GS   0.47      0 -5.463828  10.55516 -16.01899
+#> 82  TCGA-BR-8592      GS   6.37      1 -5.003108  10.84967 -15.85278
 #>     TMEscore_binary
 #> 284             Low
 #> 95              Low
@@ -92,7 +92,11 @@ microenvironment characterization in gastric cancer identifies
 prognostic and imunotherapeutically relevant gene
 signatures](https://cancerimmunolres.aacrjournals.org/content/7/5/737).
 Cancer Immunology Research, 2019, 7(5), 737-750. DOI:
-10.1158/2326-6066.CIR-18-0436, PMID: 30842092
+10.1158/2326-6066.CIR-18-0436, PMID: 30842092 and [Tumor
+microenvironment evaluation promotes precise checkpoint immunotherapy of
+advanced gastric cancer](https://jitc.bmj.com/content/9/8/e002467).
+Journal for ImmunoTherapy of Cancer, 2021, 9(8), e002467. DOI:
+10.1136/jitc-2021-002467, PMID: 34376552
 
 ### Contact
 
