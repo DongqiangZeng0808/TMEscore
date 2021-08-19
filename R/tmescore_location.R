@@ -52,37 +52,37 @@ tmescore_location<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"
 
       if(panel == "ORR"){
         if(var=="TMEscore"){
-          cutoff_mono<-14.6
-          cutoff_com<-10.59
-          cutoff_all<-12.03
+          cutoff_mono<-6.54
+          cutoff_com<-6.15
+          cutoff_all<-6.15
           pat_score<-score[score$ID==pat,]$TMEscore
         }else if(var == "TMEscoreA"){
-          cutoff_mono<-16.82
-          cutoff_com<-14.04
-          cutoff_all<-14.04
+          cutoff_mono<-10.94
+          cutoff_com<-11.00
+          cutoff_all<-10.94
           pat_score<-score[score$ID==pat,]$TMEscoreA
         }else if(var == "TMEscoreB"){
-          cutoff_mono<-11.58
-          cutoff_com<- 8.65
-          cutoff_all<-8.65
+          cutoff_mono<-10.94
+          cutoff_com<- 10.25
+          cutoff_all<-10.25
           pat_score<-score[score$ID==pat, ]$TMEscoreB
         }
       }else if(panel == "PFS"){
 
         if(var=="TMEscore"){
-          cutoff_mono<-12.11
-          cutoff_com<-13.32
-          cutoff_all<-18.73
+          cutoff_mono<-6.5
+          cutoff_com<-6.843
+          cutoff_all<-6.9
           pat_score<-score[score$ID==pat,]$TMEscore
         }else if(var == "TMEscoreA"){
-          cutoff_mono<-14.33
-          cutoff_com<-15.61
-          cutoff_all<-17.28
+          cutoff_mono<-11.64
+          cutoff_com<-9.56
+          cutoff_all<-10.9
           pat_score<-score[score$ID==pat,]$TMEscoreA
         }else if(var == "TMEscoreB"){
-          cutoff_mono<-7.00
-          cutoff_com<- 7.73
-          cutoff_all<-7.85
+          cutoff_mono<-10.5
+          cutoff_com<- 8.3
+          cutoff_all<-8.3
           pat_score<-score[score$ID==pat, ]$TMEscoreB
         }
       }
@@ -140,24 +140,24 @@ tmescore_location<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"
           geom_vline(aes(xintercept = cutoff_all),
                         linetype="dashed",color = cols2[1], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[1],
-                   x = 22, y=0.4, hjust = 0,
+                   x = 9, y=0.4, hjust = 0,
                    label = paste0('Best cutoff of all = ', cutoff_all), size=3.5)+
 
           geom_vline(aes(xintercept = cutoff_mono),
                      linetype="dashed",color =  cols2[2], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[2],
-                   x = 22, y=0.36, hjust = 0,
+                   x = 9, y=0.36, hjust = 0,
                    label = paste0('Best cutoff of mono = ', cutoff_mono), size=3.5)+
 
           geom_vline(aes(xintercept = cutoff_com),
                      linetype="dashed",color = cols2[3], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[3],
-                   x = 22, y=0.32,hjust = 0,
+                   x = 9, y=0.32,hjust = 0,
                    label = paste0('Best cutoff of com = ', cutoff_com), size=3.5)+
           geom_vline(aes(xintercept = pat_score),
                      linetype="dashed",color = "black", size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= "black",
-                   x = 22, y=0.44,hjust = 0,
+                   x = 9, y=0.44,hjust = 0,
                    label = paste0( var, ' of patient = ', pat_score))
         }
 
