@@ -12,7 +12,8 @@ tmescore_estimation_helper(
   column_of_sample,
   scale = FALSE,
   method = "mean",
-  adjust_eset = TRUE
+  adjust_eset = TRUE,
+  log2trans = FALSE
 )
 }
 \arguments{
@@ -29,7 +30,11 @@ if phenotype data is NULL, create a data frame with `Index` and `ID` contain col
 
 \item{scale}{default is FALSE}
 
+\item{method}{default is TRUE}
+
 \item{adjust_eset}{remove variables with missing value, sd =0, and Inf value}
+
+\item{log2trans}{}
 }
 \value{
 data frame with pdata and signature scores for gene sets; signatures in columns, samples in rows
