@@ -17,6 +17,8 @@
 #' @param column_of_sample  Defines in which column of pdata the sample identifier can be found
 #' @param adjust_eset remove variables with missing value, sd =0, and Inf value
 #' @param scale default is FALSE
+#' @param method default is TRUE
+#' @param log2trans
 #'
 #' @author Dongqiang Zeng
 #' @return data frame with pdata and signature scores for gene sets; signatures in columns, samples in rows
@@ -31,7 +33,8 @@ tmescore_estimation_helper<-function(pdata = NULL,
                                      column_of_sample,
                                      scale = FALSE,
                                      method = "mean",
-                                     adjust_eset = TRUE){
+                                     adjust_eset = TRUE,
+                                     log2trans = FALSE){
 
   message(paste0("\n", ">>> Calculating signature score using mean value of signature genes"))
 
@@ -58,8 +61,11 @@ tmescore_estimation_helper<-function(pdata = NULL,
   eset<-eset[,match(pdata$ID,colnames(eset))]
   ###########################
   #normalization
-  if(ncol(eset) < 5000) eset<- IOBR::log2eset(eset = eset)
-  if(ncol(eset) <5000) IOBR::check_eset(eset)
+  if(log2trans){
+    eset<- IOBR::log2eset(eset = eset)
+    if(ncol(eset) <5000) IOBR::check_eset(eset)
+  }
+
 
   if(adjust_eset){
     feas<-IOBR::feature_manipulation(data=eset,is_matrix = T)
