@@ -12,7 +12,8 @@ tmescore_location2(
   palette_line = "jama",
   showplot = TRUE,
   path = NULL,
-  x_label = 7
+  tmescore_x = 8,
+  tmescore_ab_x = 6
 )
 }
 \arguments{
