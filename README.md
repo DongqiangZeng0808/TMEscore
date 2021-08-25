@@ -40,10 +40,16 @@ library('TMEscore')
 #> TMEscore v0.1.3  For help: https://github.com/DongqiangZeng0808/TMEscore
 #> 
 #>  If you use TMEscore in published research, please cite:
+#>  --------------------------------
 #>  Tumor microenvironment characterization in gastric cancer identifies prognostic and imunotherapeutically relevant gene signatures.
 #>  Cancer Immunology Research, 2019, 7(5), 737-750
 #>  DOI: 10.1158/2326-6066.CIR-18-0436 
 #>  PMID: 30842092
+#>  --------------------------------
+#>  Tumor microenvironment evaluation promotes precise checkpoint immunotherapy of advanced gastric cancer.
+#>  Journal for ImmunoTherapy of Cancer, 2021, 9(8), e002467
+#>  DOI: 10.1136/jitc-2021-002467
+#>  PMID: 34376552
 ```
 
 Example
@@ -80,23 +86,26 @@ p<-ggplot(tmescore,aes(x= subtype,y=TMEscore,fill=subtype))+
 
 comparision<-combn(unique(as.character(tmescore$subtype)), 2, simplify=F)
 
-p+theme_light()+stat_compare_means(comparisons = comparision,size=6)+stat_compare_means(size=6)
+p+theme_light()+stat_compare_means(comparisons = comparision,size=3.5)+stat_compare_means(size=3.5)
 ```
 
 <img src="man/figuresunnamed-chunk-5-1.png" width="100%" />
 
 ### Citation
 
-If you use TMEscore in published research, please cite: [Tumor
-microenvironment characterization in gastric cancer identifies
-prognostic and imunotherapeutically relevant gene
-signatures](https://cancerimmunolres.aacrjournals.org/content/7/5/737).
-Cancer Immunology Research, 2019, 7(5), 737-750. DOI:
-10.1158/2326-6066.CIR-18-0436, PMID: 30842092 and [Tumor
-microenvironment evaluation promotes precise checkpoint immunotherapy of
-advanced gastric cancer](https://jitc.bmj.com/content/9/8/e002467).
-Journal for ImmunoTherapy of Cancer, 2021, 9(8), e002467. DOI:
-10.1136/jitc-2021-002467, PMID: 34376552
+If you use TMEscore in published research, please cite:
+
+1.  [Tumor microenvironment evaluation promotes precise checkpoint
+    immunotherapy of advanced gastric
+    cancer](https://jitc.bmj.com/content/9/8/e002467). Journal for
+    ImmunoTherapy of Cancer, 2021, 9(8), e002467. DOI:
+    10.1136/jitc-2021-002467, PMID: 34376552
+
+2.  [Tumor microenvironment characterization in gastric cancer
+    identifies prognostic and imunotherapeutically relevant gene
+    signatures](https://cancerimmunolres.aacrjournals.org/content/7/5/737).
+    Cancer Immunology Research, 2019, 7(5), 737-750. DOI:
+    10.1158/2326-6066.CIR-18-0436, PMID: 30842092 and
 
 ### Contact
 
