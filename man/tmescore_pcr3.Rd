@@ -14,8 +14,6 @@ tmescore_pcr3(
 )
 }
 \arguments{
-\item{print_gene_pro}{}
-
 \item{coef}{}
 }
 \value{

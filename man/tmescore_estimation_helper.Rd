@@ -34,7 +34,7 @@ if phenotype data is NULL, create a data frame with `Index` and `ID` contain col
 
 \item{adjust_eset}{remove variables with missing value, sd =0, and Inf value}
 
-\item{log2trans}{}
+\item{log2trans}{default is FALSE}
 }
 \value{
 data frame with pdata and signature scores for gene sets; signatures in columns, samples in rows

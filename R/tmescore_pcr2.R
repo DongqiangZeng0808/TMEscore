@@ -60,7 +60,8 @@ tmescore_pcr2<-function(eset, scale = F, method = "mean", mini_gene_count = 2, p
                                     signature = tme_signature,
                                     mini_gene_count = mini_gene_count,
                                     scale = scale,
-                                    method = method)
+                                    method = method,
+                                    log2trans = TRUE)
 
 
   # score$TMEscoreA<-score$TMEscoreA*10

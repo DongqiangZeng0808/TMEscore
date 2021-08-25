@@ -2,30 +2,26 @@
 
 
 
-
-
-
-
 #' TMEscore calculation
 #'
 #' @param eset
 #' @param scale
 #' @param method
 #' @param mini_gene_count
-#' @param print_gene_pro 
-#' @param coef 
+#' @param print_gene_pro
+#' @param coef
 #'
 #' @return
 #' @export
 #' @author Dongqiang Zeng
 #' @examples
 tmescore_pcr3<-function(eset, scale = F, method = "mean", mini_gene_count = 2, print_gene_pro = T, coef = 1){
-  
-  
+
+
   eset<-as.data.frame(eset)
   # eset<-matrix(as.numeric(eset), dim(eset), dimnames = dimnames(eset))
   eset<-eset[complete.cases(eset),]
-  
+
   eset10<-eset*coef
   #################################
   freq1<-length(intersect(signature$TMEscoreA,rownames(eset)))/length(signature$TMEscoreA)
@@ -44,14 +40,14 @@ tmescore_pcr3<-function(eset, scale = F, method = "mean", mini_gene_count = 2, p
     message(paste0(paste0(sprintf("  %1.2f%%", 100*freq2)," of TMEscoreB signature genes appear on gene matrix")))
   }
   ##################################
-  
+
   #filter signatures
   mini_gene_count <- 2 # count of overlapping genes should more than 2
   tme_signature<-signature[c("TMEscoreA","TMEscoreB")]
   tme_signature<-tme_signature[lapply(tme_signature,function(x) sum(x%in%rownames(eset)==TRUE))>= mini_gene_count]
   #################################
-  
-  
+
+
   if(!"TMEscoreA"%in% names(tme_signature) & !"TMEscoreB"%in% names(tme_signature)){
     stop("TMEscore signature genes did not appear on expression matirx ")
   } else if("TMEscoreA"%in% names(tme_signature) & !"TMEscoreB"%in% names(tme_signature)){
@@ -59,19 +55,19 @@ tmescore_pcr3<-function(eset, scale = F, method = "mean", mini_gene_count = 2, p
   } else if(!"TMEscoreA"%in% names(tme_signature) & "TMEscoreB"%in% names(tme_signature)){
     warning("Only TMEscoreB will be estimated for insufficient TMEscoreA signature genes appear on gene matrix")
   }
-  
+
   score<-tmescore_estimation_helper(eset = eset10,
                                     signature = tme_signature,
                                     mini_gene_count = mini_gene_count,
                                     scale = scale,
                                     method = method)
-  
-  
+
+
   # score$TMEscoreA<-score$TMEscoreA*10
   # score$TMEscoreB<-score$TMEscoreB*10
   #
   score$TMEscore<-c(score$TMEscore + 50)/5
-  
+
   return(score)
-  
+
 }

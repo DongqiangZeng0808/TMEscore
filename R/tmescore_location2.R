@@ -17,8 +17,7 @@
 #' @export
 #'
 #' @examples
-tmescore_location<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"), panel = "PFS", palette = "nrc", palette_line = "jama",
-                            showplot = TRUE, path = NULL ){
+tmescore_location2<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"), panel = "PFS", palette = "nrc", palette_line = "jama", showplot = TRUE, path = NULL, tmescore_x = 8, tmescore_ab_x = 6){
 
 
   score<-as.data.frame(score)
@@ -36,7 +35,7 @@ tmescore_location<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"
     cols<-cols
   }
   ###############################
-  data(ref_score)
+  data(ref_score2)
   ###############################
   pats<-as.character(score$ID)
 
@@ -98,73 +97,78 @@ tmescore_location<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"
       cols2<-IOBR::palettes(category = "box", palette = palette_line,
                            show_message = FALSE, show_col = FALSE, alpha = 1)
 
-      p<-ggplot(ref_score, aes(x= !!target,fill= BOR)) +
+      pat_split<-unlist(stringr::str_split(pat, pattern = "_"))
+      subt<-paste0("Name: ", pat_split[1], "; H: ", pat_split[2], "; Stage: ", pat_split[3],
+                   "; Tissue: ", pat_split[4], "; Batch: ", sub(pat_split[5], pattern = "batch", replacement = ""),
+                   "; Regimen: ", pat_split[6], "; BOR: ", pat_split[7])
+
+      p<-ggplot(ref_score2, aes(x= !!target,fill= BOR)) +
         geom_histogram(aes(y=..density..), binwidth=.5, colour = "black")+
         scale_fill_manual(values= cols)+
         geom_density(alpha=.2, fill="grey", weight = 2)+
-        labs(title=  paste0(target, " of ", pat),
-             subtitle= paste0(var, " of patient = ",pat_score ),
-             caption = paste0(" Data of qPCR ",panel, ";  ","BC: best cutoff;   ", "mono: monotherapy;   ", "com: combination;   ", date()))+
+        labs(title=  paste0(target, " = ", pat_score),
+             subtitle= paste0(subt),
+             caption = paste0(" Data of qPCR: ",panel, ";  ","BC: best cutoff;   ", "mono: monotherapy;   ", "com: combination;   ", date()))+
 
         xlab(paste0(target))+
         theme_light()+
-        IOBR:: design_mytheme(legend.position = "bottom",axis_angle = 0)
+        IOBR:: design_mytheme(legend.position = "bottom",axis_angle = 0,plot_title_size = 1.5)
 
 
-        if(var == "TMEscore"){
-          p<-p+geom_vline(aes(xintercept = cutoff_all),
-                          linetype="dashed",color = cols2[1], size = 0.70)+
-            annotate(geom = "text", fontface = "plain", color= cols2[1],
-                     x = cutoff_all+0.4, y=0.36,
-                     label = paste0('BC of all = ', cutoff_all), size=3.5,angle = 90)+
-
-            geom_vline(aes(xintercept = cutoff_mono),
-                       linetype="dashed",color =  cols2[2], size = 0.70)+
-            annotate(geom = "text", fontface = "plain", color= cols2[2],
-                     x = cutoff_mono-0.4, y=0.35,
-                     label = paste0('BC of mono = ', cutoff_mono), size=3.5,angle = 90)+
-
-            geom_vline(aes(xintercept = cutoff_com),
-                       linetype="dashed",color = cols2[3], size = 0.70)+
-            annotate(geom = "text", fontface = "plain", color= cols2[3],
-                     x = cutoff_com-0.4, y=0.35,
-                     label = paste0('BC of com = ', cutoff_com), size=3.5,angle = 90)+
-            geom_vline(aes(xintercept = pat_score),
-                       linetype="dashed",color = "black", size = 0.70)+
-            annotate(geom = "text", fontface = "plain", color= "black",
-                     x = pat_score-0.4, y=0.33,
-                     label = paste0( var, ' of patient = ', pat_score), size=3.5,angle = 90)
-        }else{
-
-          p<-p+
-          geom_vline(aes(xintercept = cutoff_all),
+      if(var == "TMEscore"){
+        p<-p+geom_vline(aes(xintercept = cutoff_all),
                         linetype="dashed",color = cols2[1], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[1],
-                   x = 7, y = 1, hjust = 0,
-                   label = paste0('Best cutoff of all = ', cutoff_all), size=3.5)+
+                   x = tmescore_x, y=1.05, hjust = 0,
+                   label = paste0('BC of all = ', cutoff_all), size=4.5)+
 
           geom_vline(aes(xintercept = cutoff_mono),
                      linetype="dashed",color =  cols2[2], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[2],
-                   x = 7, y=0.90, hjust = 0,
-                   label = paste0('Best cutoff of mono = ', cutoff_mono), size=3.5)+
+                   x = tmescore_x, y= 0.9,hjust = 0,
+                   label = paste0('BC of mono = ', cutoff_mono), size=4.5)+
 
           geom_vline(aes(xintercept = cutoff_com),
                      linetype="dashed",color = cols2[3], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[3],
-                   x = 7, y=0.76,hjust = 0,
-                   label = paste0('Best cutoff of com = ', cutoff_com), size=3.5)+
+                   x = tmescore_x, y=0.76,hjust = 0,
+                   label = paste0('BC of com = ', cutoff_com), size=4.5)+
           geom_vline(aes(xintercept = pat_score),
                      linetype="dashed",color = "black", size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= "black",
-                   x = 7, y=0.62,hjust = 0,
-                   label = paste0( var, ' of patient = ', pat_score))
-        }
+                   x = tmescore_x, y = 1.35,hjust = 0,
+                   label = paste0( var, ' of patient = ', pat_score), size=4.5)
+      }else{
+
+        p<-p+
+          geom_vline(aes(xintercept = cutoff_all),
+                     linetype="dashed",color = cols2[1], size = 0.70)+
+          annotate(geom = "text", fontface = "plain", color= cols2[1],
+                   x = tmescore_ab_x, y = 1, hjust = 0,
+                   label = paste0('Best cutoff of all = ', cutoff_all), size=4.5)+
+
+          geom_vline(aes(xintercept = cutoff_mono),
+                     linetype="dashed",color =  cols2[2], size = 0.70)+
+          annotate(geom = "text", fontface = "plain", color= cols2[2],
+                   x = tmescore_ab_x, y=0.80, hjust = 0,
+                   label = paste0('Best cutoff of mono = ', cutoff_mono), size=4.5)+
+
+          geom_vline(aes(xintercept = cutoff_com),
+                     linetype="dashed",color = cols2[3], size = 0.70)+
+          annotate(geom = "text", fontface = "plain", color= cols2[3],
+                   x = tmescore_ab_x, y=0.6,hjust = 0,
+                   label = paste0('Best cutoff of com = ', cutoff_com), size=4.5)+
+          geom_vline(aes(xintercept = pat_score),
+                     linetype="dashed",color = "black", size = 0.70)+
+          annotate(geom = "text", fontface = "plain", color= "black",
+                   x = tmescore_ab_x, y=1.2,hjust = 0,
+                   label = paste0( var, ' of patient = ', pat_score),size = 4.5)
+      }
 
 
       if(showplot) print(p)
-      ggsave(p,filename =paste0(i,"-",j,"-",pat,"-",var,".pdf"),
-             width = 6.64,height = 5.76, path = path)
+      ggsave(p,filename =paste0(i,"-",j,"-",pat,"-",var,".png"),
+             width = 7.64,height = 5.76, path = path, dpi = 300)
 
     }
 

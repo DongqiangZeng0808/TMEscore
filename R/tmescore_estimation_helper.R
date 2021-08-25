@@ -2,11 +2,6 @@
 
 
 
-
-
-
-
-
 #' Calculating TMEscore using PCR data
 #'
 #' @param pdata phenotype data of input sample;
@@ -18,7 +13,7 @@
 #' @param adjust_eset remove variables with missing value, sd =0, and Inf value
 #' @param scale default is FALSE
 #' @param method default is TRUE
-#' @param log2trans
+#' @param log2trans default is FALSE
 #'
 #' @author Dongqiang Zeng
 #' @return data frame with pdata and signature scores for gene sets; signatures in columns, samples in rows
