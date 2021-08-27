@@ -30,8 +30,6 @@ tmescore_location4(
 \item{showplot}{default is FALSE}
 
 \item{path}{path to save result}
-
-\item{x_label}{default is 2.5}
 }
 \value{
 
