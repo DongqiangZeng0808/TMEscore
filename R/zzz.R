@@ -18,7 +18,8 @@
                      " Tumor microenvironment evaluation promotes precise checkpoint immunotherapy of advanced gastric cancer.","\n",
                      " Journal for ImmunoTherapy of Cancer, 2021, 9(8), e002467","\n",
                      " DOI: 10.1136/jitc-2021-002467","\n",
-                     " PMID: 34376552")
+                     " PMID: 34376552","\n",
+                     " --------------------------------")
 
   packageStartupMessage(paste0(msg, citation))
 }
