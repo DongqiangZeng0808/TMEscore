@@ -12,12 +12,14 @@
 #' @param path path to save result
 #' @param palette_line palette of line
 #' @param panel "PFS" or "ORR"
+#' @param tmescore_x 7
+#' @param tmescore_ab_x 5.9
 #'
 #' @return
 #' @export
 #'
 #' @examples
-tmescore_location2<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"), panel = "PFS", palette = "nrc", palette_line = "jama", showplot = TRUE, path = NULL, tmescore_x = 8, tmescore_ab_x = 6){
+tmescore_location2<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"), panel = "PFS", palette = "nrc", palette_line = "jama", showplot = TRUE, path = NULL, tmescore_x = 7, tmescore_ab_x = 5.9){
 
 
   score<-as.data.frame(score)
@@ -98,9 +100,9 @@ tmescore_location2<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB
                            show_message = FALSE, show_col = FALSE, alpha = 1)
 
       pat_split<-unlist(stringr::str_split(pat, pattern = "_"))
-      subt<-paste0("Name: ", pat_split[1], "; H: ", pat_split[2], "; Stage: ", pat_split[3],
-                   "; Tissue: ", pat_split[4], "; Batch: ", sub(pat_split[5], pattern = "batch", replacement = ""),
-                   "; Regimen: ", pat_split[6], "; BOR: ", pat_split[7])
+      subt<-paste0("Name: ", pat_split[1], " | H: ", pat_split[2], " | C: ", pat_split[3],
+                   " | T: ", pat_split[4], " | B: ", sub(pat_split[5], pattern = "batch", replacement = ""),
+                   " | R: ", pat_split[6], " | BOR: ", pat_split[7])
 
       p<-ggplot(ref_score2, aes(x= !!target,fill= BOR)) +
         geom_histogram(aes(y=..density..), binwidth=.5, colour = "black")+
@@ -108,11 +110,13 @@ tmescore_location2<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB
         geom_density(alpha=.2, fill="grey", weight = 2)+
         labs(title=  paste0(target, " = ", pat_score),
              subtitle= paste0(subt),
-             caption = paste0(" Data of qPCR: ",panel, ";  ","BC: best cutoff;   ", "mono: monotherapy;   ", "com: combination;   ", date()))+
+             caption = paste0(" Cutoff of: ",panel, ";  ","BC: best cutoff;   ", "mono: monotherapy;   ",
+                              "com: combination;   ", date()))+
 
-        xlab(paste0(target))+
+
         theme_light()+
-        IOBR:: design_mytheme(legend.position = "bottom",axis_angle = 0,plot_title_size = 1.5)
+        IOBR:: design_mytheme(legend.position = "bottom",axis_angle = 0,plot_title_size = 2)+
+        xlab(NULL)
 
 
       if(var == "TMEscore"){

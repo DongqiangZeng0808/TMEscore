@@ -18,7 +18,9 @@
 #' @export
 #'
 #' @examples
-tmescore_location3<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"), panel = "PFS", palette = "nrc", palette_line = "jama", showplot = TRUE, path = NULL, tmescore_x = 2.5, tmescore_ab_x = 10){
+tmescore_location4<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB"), panel = "PFS",
+                             palette = "nrc", palette_line = "jama", showplot = TRUE, path = NULL, tmescore_x = -10,
+                             tmescore_ab_x = 10){
 
 
   score<-as.data.frame(score)
@@ -36,7 +38,7 @@ tmescore_location3<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB
     cols<-cols
   }
   ###############################
-  data(ref_score3)
+  data(ref_score4)
   ###############################
   pats<-as.character(score$ID)
 
@@ -70,9 +72,9 @@ tmescore_location3<-function(score, vars = c("TMEscore", "TMEscoreA", "TMEscoreB
       }else if(panel == "PFS"){
 
         if(var=="TMEscore"){
-          cutoff_mono<-10.20
-          cutoff_com<-10.29
-          cutoff_all<-10.29
+          cutoff_mono<-21.00
+          cutoff_com<-21.45
+          cutoff_all<-21.45
           pat_score<-score[score$ID==pat,]$TMEscore
         }else if(var == "TMEscoreA"){
           cutoff_mono<-4.49
