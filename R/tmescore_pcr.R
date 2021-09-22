@@ -18,7 +18,7 @@ tmescore_pcr<-function(eset, scale = F, method = "mean", mini_gene_count = 2, pr
 
   eset<-as.data.frame(eset)
   # eset<-matrix(as.numeric(eset), dim(eset), dimnames = dimnames(eset))
-  eset<-eset[complete.cases(eset),]
+  # eset<-eset[complete.cases(eset),]
   eset10<-eset*100
   #################################
   freq1<-length(intersect(signature$TMEscoreA,rownames(eset)))/length(signature$TMEscoreA)
