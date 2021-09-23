@@ -20,7 +20,7 @@ tmescore_pcr3<-function(eset, scale = F, method = "mean", mini_gene_count = 2, p
 
   eset<-as.data.frame(eset)
   # eset<-matrix(as.numeric(eset), dim(eset), dimnames = dimnames(eset))
-  eset<-eset[complete.cases(eset),]
+  # eset<-eset[complete.cases(eset),]
 
   eset10<-eset*coef
   #################################
@@ -60,6 +60,7 @@ tmescore_pcr3<-function(eset, scale = F, method = "mean", mini_gene_count = 2, p
                                     signature = tme_signature,
                                     mini_gene_count = mini_gene_count,
                                     scale = scale,
+                                    replace_na = T,
                                     method = method)
 
 

@@ -20,7 +20,7 @@ tmescore_pcr4<-function(eset, scale = F, method = "mean", mini_gene_count = 2, p
 
   eset<-as.data.frame(eset)
   # eset<-matrix(as.numeric(eset), dim(eset), dimnames = dimnames(eset))
-  eset<-eset[complete.cases(eset),]
+  # eset<-eset[complete.cases(eset),]
 
   eset10<-eset*coef
   #################################

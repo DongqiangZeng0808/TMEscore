@@ -24,11 +24,12 @@
 tmescore_estimation_helper<-function(pdata = NULL,
                                      eset,
                                      signature,
-                                     mini_gene_count,
-                                     column_of_sample,
+                                     mini_gene_count = 2,
+                                     column_of_sample = "ID",
+                                     replace_na = FALSE,
                                      scale = FALSE,
                                      method = "mean",
-                                     adjust_eset = TRUE,
+                                     adjust_eset = FALSE,
                                      log2trans = FALSE){
 
   message(paste0("\n", ">>> Calculating signature score using mean value of signature genes"))
@@ -56,18 +57,57 @@ tmescore_estimation_helper<-function(pdata = NULL,
   eset<-eset[,match(pdata$ID,colnames(eset))]
   ###########################
   #normalization
-  if(log2trans){
-    eset<- IOBR::log2eset(eset = eset)
-    if(ncol(eset) <5000) IOBR::check_eset(eset)
-  }
 
+  if(sum(is.na(eset)>0)) message(">>> Parameter `adjust_eset` must be FALSE, if variables with NA wanted to be preserved")
 
   if(adjust_eset){
     feas<-IOBR::feature_manipulation(data=eset,is_matrix = T)
     eset<-eset[rownames(eset)%in%feas,]
   }
 
-  if(scale) eset<-scale(eset,center = T,scale = T)
+
+  if(log2trans&replace_na==FALSE) stop("If paramater `log2trans` is TRUE, `replace_na` must be TRUE to replace NA")
+
+  if(replace_na){
+
+    if(sum(is.na(eset)>0)){
+
+      message(">>> Retain NA variables, replaced by mean value of all observations")
+      teset<-as.data.frame(t(eset))
+      for(i in c(1:ncol(teset))){
+        teset[is.na(teset[,i]),i]<-mean(teset[!is.na(teset[,i]),i])
+      }
+      eset<-t(teset)
+
+      if(log2trans){
+        eset<- IOBR::log2eset(eset = eset)
+        if(ncol(eset) <5000) IOBR::check_eset(eset)
+      }
+
+    }else{
+      message(">>> There are no missing values")
+    }
+  }
+
+
+
+  if(scale){
+    if(sum(is.na(eset))>0){
+      message("Before scaling, NA will be repleased by mean value")
+
+      teset<-as.data.frame(t(eset))
+      for(i in c(1:ncol(teset))){
+        teset[is.na(teset[,i]),i]<-mean(teset[!is.na(teset[,i]),i])
+      }
+      eset<-t(teset)
+      message(paste0("Counts of NA after replacement = "), sum(is.na(eset)))
+
+      feas<-IOBR::feature_manipulation(data=eset,is_matrix = T)
+      eset<-eset[rownames(eset)%in%feas,]
+
+    }
+    eset<-scale(eset, center = T,scale = T)
+  }
   ###########################
   ###########################
   if(mini_gene_count<=2) mini_gene_count <- 2
@@ -82,9 +122,9 @@ tmescore_estimation_helper<-function(pdata = NULL,
     tmp <- eset[genes, , drop=FALSE]
 
     if(method=="mean"){
-      pdata[, sig] <- colMeans(tmp)
+      pdata[, sig] <- colMeans(tmp,na.rm = T)
     }else{
-      pdata[, sig] <- colSums(tmp)
+      pdata[, sig] <- colSums(tmp, na.rm = T)
     }
 
   }
@@ -118,10 +158,10 @@ sigScore <- function(eset, methods = "PCA") {
   if (methods == "PCA") {
     # message(paste0("Calculating siganture score using PCA function"))
     pc <- prcomp(t(eset))
-    sigs <- pc$x[,1] * sign(cor(pc$x[,1], colMeans(eset)))
+    sigs <- pc$x[,1] * sign(cor(pc$x[,1], colMeans(eset, na.rm = T)))
   } else {
     # message(paste0("Calculating siganture score using mean of signature genes"))
-    sigs <- colSums(eset)
+    sigs <- colSums(eset, na.rm = T)
   }
   return(sigs)
 }
