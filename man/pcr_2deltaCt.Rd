@@ -9,7 +9,8 @@ pcr_2deltaCt(
   Sample = "Sample",
   ref_gene = "ACTB",
   Dup.ID = c("D1", "D2", "D3"),
-  path = "0-QC-data"
+  path = "0-QC-data",
+  index = 55
 )
 }
 \arguments{
@@ -20,6 +21,10 @@ pcr_2deltaCt(
 \item{ref_gene}{genes as reference}
 
 \item{Dup.ID}{default is c("D1", "D2", "D3"), so the same sample should be stay together}
+
+\item{path}{default is '0-QC-data'}
+
+\item{index}{default is 55}
 }
 \value{
 
@@ -28,7 +33,7 @@ pcr_2deltaCt(
 pcr_2deltaCt
 }
 \examples{
-鍙傝€冮摼鎺ワ細https://zouhua.top/archives/3db8e2e5.html
-鍙傝€冮摼鎺ワ細https://www.biolab.wang/r/r_for_qpcr
+参考链接：https://zouhua.top/archives/3db8e2e5.html
+参考链接：https://www.biolab.wang/r/r_for_qpcr
 
 }

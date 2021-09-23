@@ -8,11 +8,12 @@ tmescore_estimation_helper(
   pdata = NULL,
   eset,
   signature,
-  mini_gene_count,
-  column_of_sample,
+  mini_gene_count = 2,
+  column_of_sample = "ID",
+  replace_na = FALSE,
   scale = FALSE,
   method = "mean",
-  adjust_eset = TRUE,
+  adjust_eset = FALSE,
   log2trans = FALSE
 )
 }
