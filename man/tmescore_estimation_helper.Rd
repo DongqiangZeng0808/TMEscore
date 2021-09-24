@@ -15,7 +15,8 @@ tmescore_estimation_helper(
   method = "mean",
   adjust_eset = FALSE,
   log2trans = FALSE,
-  save_data = FALSE
+  save_data = FALSE,
+  file_name = NULL
 )
 }
 \arguments{
@@ -41,6 +42,8 @@ if phenotype data is NULL, create a data frame with `Index` and `ID` contain col
 \item{log2trans}{default is FALSE}
 
 \item{save_data}{default is FALSE}
+
+\item{file_name}{default is null}
 }
 \value{
 data frame with pdata and signature scores for gene sets; signatures in columns, samples in rows

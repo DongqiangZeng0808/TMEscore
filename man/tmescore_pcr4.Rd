@@ -10,7 +10,9 @@ tmescore_pcr4(
   method = "mean",
   mini_gene_count = 2,
   print_gene_pro = T,
-  coef = 1
+  coef = 1,
+  save_eset = T,
+  file_name = NULL
 )
 }
 \arguments{

@@ -16,6 +16,7 @@
 #' @param log2trans default is FALSE
 #' @param replace_na default is FALSE
 #' @param save_data default is FALSE
+#' @param file_name default is null
 #'
 #' @author Dongqiang Zeng
 #' @return data frame with pdata and signature scores for gene sets; signatures in columns, samples in rows
@@ -33,7 +34,8 @@ tmescore_estimation_helper<-function(pdata = NULL,
                                      method = "mean",
                                      adjust_eset = FALSE,
                                      log2trans = FALSE,
-                                     save_data = FALSE){
+                                     save_data = FALSE,
+                                     file_name = NULL){
 
   message(paste0("\n", ">>> Calculating signature score using mean value of signature genes"))
 
@@ -114,7 +116,14 @@ tmescore_estimation_helper<-function(pdata = NULL,
     eset<-scale(eset, center = T,scale = T)
   }
   ###########################
-  if(save_data) write.csv(eset, "eset.csv")
+  if(save_data){
+    if(is.null(file_name)){
+      write.csv(eset, "eset-after-normalization.csv")
+    }else{
+      write.csv(eset,  paste0(file_name,".csv"))
+    }
+
+  }
   ###########################
   if(mini_gene_count<=2) mini_gene_count <- 2
   signature<-signature[lapply(signature,function(x) sum(x%in%rownames(eset)==TRUE))>= mini_gene_count]

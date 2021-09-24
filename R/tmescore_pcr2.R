@@ -13,12 +13,13 @@
 #' @param mini_gene_count
 #' @param print_gene_pro
 #' @param save_eset
+#' @param file_name
 #'
 #' @return
 #' @export
 #' @author Dongqiang Zeng
 #' @examples
-tmescore_pcr2<-function(eset, scale = F, method = "mean", mini_gene_count = 2, print_gene_pro = T , save_eset = T ){
+tmescore_pcr2<-function(eset, scale = F, method = "mean", mini_gene_count = 2, print_gene_pro = T , save_eset = T, file_name = NULL){
 
 
   eset<-as.data.frame(eset)
@@ -65,7 +66,8 @@ tmescore_pcr2<-function(eset, scale = F, method = "mean", mini_gene_count = 2, p
                                     method = method,
                                     log2trans = TRUE,
                                     replace_na = TRUE,
-                                    save_data = save_eset)
+                                    save_data = save_eset,
+                                    file_name = file_name)
 
 
   # score$TMEscoreA<-score$TMEscoreA*10

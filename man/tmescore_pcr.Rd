@@ -9,11 +9,13 @@ tmescore_pcr(
   scale = F,
   method = "mean",
   mini_gene_count = 2,
-  print_gene_pro = T
+  print_gene_pro = T,
+  save_eset = T,
+  file_name = NULL
 )
 }
 \arguments{
-\item{mini_gene_count}{}
+\item{file_name}{}
 }
 \value{
 

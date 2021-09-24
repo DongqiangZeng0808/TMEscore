@@ -10,11 +10,12 @@ tmescore_pcr2(
   method = "mean",
   mini_gene_count = 2,
   print_gene_pro = T,
-  save_eset = T
+  save_eset = T,
+  file_name = NULL
 )
 }
 \arguments{
-\item{save_eset}{}
+\item{file_name}{}
 }
 \value{
 

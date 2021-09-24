@@ -15,7 +15,7 @@
 #' @export
 #' @author Dongqiang Zeng
 #' @examples
-tmescore_pcr4<-function(eset, scale = F, method = "mean", mini_gene_count = 2, print_gene_pro = T, coef = 1){
+tmescore_pcr4<-function(eset, scale = F, method = "mean", mini_gene_count = 2, print_gene_pro = T, coef = 1, save_eset = T, file_name = NULL){
 
 
   eset<-as.data.frame(eset)
@@ -60,13 +60,16 @@ tmescore_pcr4<-function(eset, scale = F, method = "mean", mini_gene_count = 2, p
                                     signature = tme_signature,
                                     mini_gene_count = mini_gene_count,
                                     scale = scale,
-                                    method = method)
+                                    method = method,
+                                    replace_na = FALSE,
+                                    save_data = save_eset,
+                                    file_name = file_name)
 
 
   # score$TMEscoreA<-score$TMEscoreA*10
   # score$TMEscoreB<-score$TMEscoreB*10
   #
-  score$TMEscore<- score$TMEscore+20
+  score$TMEscore<- c(score$TMEscore+3)*4
 
   return(score)
 
