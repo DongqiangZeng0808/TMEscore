@@ -33,10 +33,10 @@ Main documentation is on the `tmescore` function in the package:
 
 ``` r
 library('TMEscore')
-#> Loading required package: survival
-#> Loading required package: survminer
-#> Loading required package: ggplot2
-#> Loading required package: ggpubr
+#> 载入需要的程辑包：survival
+#> 载入需要的程辑包：survminer
+#> 载入需要的程辑包：ggplot2
+#> 载入需要的程辑包：ggpubr
 #> TMEscore v0.1.3  For help: https://github.com/DongqiangZeng0808/TMEscore
 #> 
 #>  If you use TMEscore in published research, please cite:
@@ -50,6 +50,7 @@ library('TMEscore')
 #>  Journal for ImmunoTherapy of Cancer, 2021, 9(8), e002467
 #>  DOI: 10.1136/jitc-2021-002467
 #>  PMID: 34376552
+#>  --------------------------------
 ```
 
 Example

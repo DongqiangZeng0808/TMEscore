@@ -14,6 +14,8 @@
 #' @param scale default is FALSE
 #' @param method default is TRUE
 #' @param log2trans default is FALSE
+#' @param replace_na default is FALSE
+#' @param save_data default is FALSE
 #'
 #' @author Dongqiang Zeng
 #' @return data frame with pdata and signature scores for gene sets; signatures in columns, samples in rows
@@ -30,7 +32,8 @@ tmescore_estimation_helper<-function(pdata = NULL,
                                      scale = FALSE,
                                      method = "mean",
                                      adjust_eset = FALSE,
-                                     log2trans = FALSE){
+                                     log2trans = FALSE,
+                                     save_data = FALSE){
 
   message(paste0("\n", ">>> Calculating signature score using mean value of signature genes"))
 
@@ -80,6 +83,10 @@ tmescore_estimation_helper<-function(pdata = NULL,
       eset<-t(teset)
 
       if(log2trans){
+
+        feas<-IOBR::feature_manipulation(data=eset,is_matrix = T)
+        eset<-eset[rownames(eset)%in%feas,]
+
         eset<- IOBR::log2eset(eset = eset)
         if(ncol(eset) <5000) IOBR::check_eset(eset)
       }
@@ -88,8 +95,6 @@ tmescore_estimation_helper<-function(pdata = NULL,
       message(">>> There are no missing values")
     }
   }
-
-
 
   if(scale){
     if(sum(is.na(eset))>0){
@@ -109,6 +114,7 @@ tmescore_estimation_helper<-function(pdata = NULL,
     eset<-scale(eset, center = T,scale = T)
   }
   ###########################
+  if(save_data) write.csv(eset, "eset.csv")
   ###########################
   if(mini_gene_count<=2) mini_gene_count <- 2
   signature<-signature[lapply(signature,function(x) sum(x%in%rownames(eset)==TRUE))>= mini_gene_count]
