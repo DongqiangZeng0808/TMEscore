@@ -26,7 +26,7 @@
 #'
 tmescore_estimation_helper<-function(pdata = NULL,
                                      eset,
-                                     signature,
+                                     signature = NULL,
                                      mini_gene_count = 2,
                                      column_of_sample = "ID",
                                      replace_na = FALSE,
@@ -126,6 +126,10 @@ tmescore_estimation_helper<-function(pdata = NULL,
   }
   ###########################
   if(mini_gene_count<=2) mini_gene_count <- 2
+
+
+  if(is.null(signatue)) data(signature)
+
   signature<-signature[lapply(signature,function(x) sum(x%in%rownames(eset)==TRUE))>= mini_gene_count]
   ###########################
   #calculating signature score

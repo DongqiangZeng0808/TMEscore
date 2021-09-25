@@ -7,6 +7,7 @@
 tmescore_pcr(
   eset,
   scale = F,
+  sig = "pcr",
   method = "mean",
   mini_gene_count = 2,
   print_gene_pro = T,
@@ -15,7 +16,7 @@ tmescore_pcr(
 )
 }
 \arguments{
-\item{file_name}{}
+\item{sig}{}
 }
 \value{
 

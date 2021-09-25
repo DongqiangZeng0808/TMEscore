@@ -7,7 +7,7 @@
 tmescore_estimation_helper(
   pdata = NULL,
   eset,
-  signature,
+  signature = NULL,
   mini_gene_count = 2,
   column_of_sample = "ID",
   replace_na = FALSE,
