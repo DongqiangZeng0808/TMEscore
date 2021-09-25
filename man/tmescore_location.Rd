@@ -9,13 +9,14 @@ tmescore_location(
   vars = c("TMEscore", "TMEscoreA", "TMEscoreB"),
   panel = "ORR",
   method = "method2",
-  regimen = "all",
   palette = "nrc",
   palette_line = "jama",
   showplot = TRUE,
   path = NULL,
   tmescore_x = 7,
-  tmescore_ab_x = 5.9
+  tmescore_ab_x = 2,
+  tmescore_y_index = -0.5,
+  tmescoreab_y_index = 0.5
 )
 }
 \arguments{
@@ -25,9 +26,7 @@ tmescore_location(
 
 \item{panel}{"PFS" or "ORR"}
 
-\item{method}{}
-
-\item{regimen}{}
+\item{method}{default is method2}
 
 \item{palette}{palette of response}
 
@@ -39,7 +38,9 @@ tmescore_location(
 
 \item{tmescore_x}{7}
 
-\item{tmescore_ab_x}{5.9}
+\item{tmescore_ab_x}{default is 3.8}
+
+\item{tmescore_y_index}{}
 }
 \value{
 
