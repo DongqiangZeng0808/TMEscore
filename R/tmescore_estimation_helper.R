@@ -128,7 +128,7 @@ tmescore_estimation_helper<-function(pdata = NULL,
   if(mini_gene_count<=2) mini_gene_count <- 2
 
 
-  if(is.null(signatue)) data(signature)
+  if(is.null(signature)) data(signature)
 
   signature<-signature[lapply(signature,function(x) sum(x%in%rownames(eset)==TRUE))>= mini_gene_count]
   ###########################
