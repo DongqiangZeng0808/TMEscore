@@ -8,10 +8,11 @@ tmescore_pcr2(
   eset,
   scale = F,
   sig = "pcr",
+  max = 20,
   method = "mean",
   mini_gene_count = 2,
   print_gene_pro = T,
-  save_eset = T,
+  save_eset = F,
   file_name = NULL
 )
 }

@@ -66,12 +66,12 @@ tmescore_estimation_helper<-function(pdata = NULL,
   if(sum(is.na(eset)>0)) message(">>> Parameter `adjust_eset` must be FALSE, if variables with NA wanted to be preserved")
 
   if(adjust_eset){
+    message(">>> Variables with NA will be deleted when `adjust_eset` is TRUE")
     feas<-IOBR::feature_manipulation(data=eset,is_matrix = T)
     eset<-eset[rownames(eset)%in%feas,]
   }
 
-
-  if(log2trans&replace_na==FALSE) stop("If paramater `log2trans` is TRUE, `replace_na` must be TRUE to replace NA")
+  if(log2trans) message(">>> If paramater `log2trans` is TRUE, `replace_na` must be TRUE to replace NA before log2 transformation.")
 
   if(replace_na){
 
@@ -84,18 +84,22 @@ tmescore_estimation_helper<-function(pdata = NULL,
       }
       eset<-t(teset)
 
-      if(log2trans){
-
-        feas<-IOBR::feature_manipulation(data=eset,is_matrix = T)
-        eset<-eset[rownames(eset)%in%feas,]
-
-        eset<- IOBR::log2eset(eset = eset)
-        if(ncol(eset) <5000) IOBR::check_eset(eset)
-      }
-
     }else{
       message(">>> There are no missing values")
     }
+
+    if(log2trans){
+
+      feas<-IOBR::feature_manipulation(data=eset,is_matrix = T)
+      eset<-eset[rownames(eset)%in%feas,]
+      eset<- log2(eset)
+      if(ncol(eset) <5000) IOBR::check_eset(eset)
+
+      message(">>> log2 transforamtion was finished.")
+    }
+
+  }else{
+    message(">>> NA was preserved.")
   }
 
   if(scale){
@@ -113,7 +117,7 @@ tmescore_estimation_helper<-function(pdata = NULL,
       eset<-eset[rownames(eset)%in%feas,]
 
     }
-    eset<-scale(eset, center = T,scale = T)
+    eset<-t(scale(t(eset), center = T,scale = T))
   }
   ###########################
   if(save_data){

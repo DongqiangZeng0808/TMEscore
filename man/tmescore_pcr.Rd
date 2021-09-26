@@ -6,17 +6,18 @@
 \usage{
 tmescore_pcr(
   eset,
-  scale = F,
+  scale = T,
   sig = "pcr",
   method = "mean",
+  max = 20,
   mini_gene_count = 2,
   print_gene_pro = T,
-  save_eset = T,
+  save_eset = F,
   file_name = NULL
 )
 }
 \arguments{
-\item{sig}{}
+\item{max}{}
 }
 \value{
 

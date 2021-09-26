@@ -20,13 +20,36 @@
 #' @export
 #' @author Dongqiang Zeng
 #' @examples
-tmescore_pcr2<-function(eset, scale = F, sig = "pcr",  method = "mean", mini_gene_count = 2, print_gene_pro = T , save_eset = T, file_name = NULL){
+tmescore_pcr2<-function(eset, scale = F, sig = "pcr",  max = 20, method = "mean", mini_gene_count = 2, print_gene_pro = T , save_eset = F, file_name = NULL){
 
 
   eset<-as.data.frame(eset)
   # eset<-matrix(as.numeric(eset), dim(eset), dimnames = dimnames(eset))
   # eset<-eset[complete.cases(eset),]
+
+  if(max(eset, na.rm = T)>50){
+    message(paste0(">>> The maximum value of ddCt is = ",max(eset, na.rm = T), ". Data correction is preferred!!" ))
+    message(">>> The maximum value can be limited by the parameter `max`.")
+  }else{
+    message(paste0(">>> The maximum value of ddCt is = ",max(eset, na.rm = T)))
+    message(paste0(">>> The minimum value of ddCt is = ",min(eset, na.rm = T)))
+  }
+
+  if(!is.null(max)){
+    eset[eset>max]<-max
+    message(paste0(">>> The maximum value was limited to:: ",max, " by the parameter `max`."))
+  }
+
+  teset<-as.data.frame(t(eset))
+  for(i in c(1:ncol(teset))){
+    teset[is.na(teset[,i]),i]<-mean(teset[!is.na(teset[,i]),i])
+  }
+  eset<-t(teset)
+  message(paste0(">>> Counts of NA after mean value replacement = "), sum(is.na(eset)))
+
   eset10<-eset*1000
+
+  message(">>> The ddCt value has been multiplied by 1000 and will be logarithmically transformed ")
   #################################
 
   if(sig=="pcr"){

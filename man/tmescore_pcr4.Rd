@@ -8,16 +8,17 @@ tmescore_pcr4(
   eset,
   scale = F,
   sig = "pcr",
+  max = 20,
   method = "mean",
   mini_gene_count = 2,
   print_gene_pro = T,
   coef = 1,
-  save_eset = T,
+  save_eset = F,
   file_name = NULL
 )
 }
 \arguments{
-\item{file_name}{}
+\item{max}{}
 }
 \value{
 

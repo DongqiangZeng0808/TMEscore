@@ -14,8 +14,19 @@
 #' @examples
 tmescore_report<-function(score, method){
 
-
   data(cutoff)
+
+  # res<-data.frame(NULL)
+  #
+  # if(nrow(score)>1){
+  #
+  #   for (i in 1:nrow(res)) {
+  #
+  #   }
+  #
+  # }
+
+
   score$method<-method
   score$cutoff_ORR<- cutoff[cutoff$method==method&cutoff$regimen=="All"&cutoff$type=="ORR"&cutoff$name=="TMEscore",]$value
   score$cutoff_PFS<- cutoff[cutoff$method==method&cutoff$regimen=="All"&cutoff$type=="PFS"&cutoff$name=="TMEscore",]$value

@@ -7,8 +7,6 @@
 tmescore_report(score, method)
 }
 \arguments{
-\item{score}{}
-
 \item{method}{}
 }
 \value{
