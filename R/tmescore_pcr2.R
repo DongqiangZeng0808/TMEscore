@@ -28,11 +28,11 @@ tmescore_pcr2<-function(eset, scale = F, sig = "pcr",  max = 20, method = "mean"
   # eset<-eset[complete.cases(eset),]
 
   if(max(eset, na.rm = T)>50){
-    message(paste0(">>> The maximum value of ddCt is = ",max(eset, na.rm = T), ". Data correction is preferred!!" ))
+    message(paste0(">>> The maximum value of Fc is = ",max(eset, na.rm = T), ". Data correction is preferred!!" ))
     message(">>> The maximum value can be limited by the parameter `max`.")
   }else{
-    message(paste0(">>> The maximum value of ddCt is = ",max(eset, na.rm = T)))
-    message(paste0(">>> The minimum value of ddCt is = ",min(eset, na.rm = T)))
+    message(paste0(">>> The maximum value of Fc is = ",max(eset, na.rm = T)))
+    message(paste0(">>> The minimum value of Fc is = ",min(eset, na.rm = T)))
   }
 
   if(!is.null(max)){
@@ -49,7 +49,7 @@ tmescore_pcr2<-function(eset, scale = F, sig = "pcr",  max = 20, method = "mean"
 
   eset10<-eset*1000
 
-  message(">>> The ddCt value has been multiplied by 1000 and will be logarithmically transformed ")
+  message(">>> The Fc value has been multiplied by 1000 and will be logarithmically transformed ")
   #################################
 
   if(sig=="pcr"){

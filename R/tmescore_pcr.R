@@ -28,11 +28,11 @@ tmescore_pcr<-function(eset, scale = T, sig = "pcr", method = "mean", max = 20, 
 
 
   if(max(eset, na.rm = T)>50){
-    message(paste0(">>> The maximum value of ddCt is = ",max(eset, na.rm = T), ". Data correction is preferred!!" ))
+    message(paste0(">>> The maximum value of Fc is = ",max(eset, na.rm = T), ". Data correction is preferred!!" ))
     message(">>> The maximum value can be limited by the parameter `max`.")
   }else{
-    message(paste0(">>> The maximum value of ddCt is = ",max(eset, na.rm = T)))
-    message(paste0(">>> The minimum value of ddCt is = ",min(eset, na.rm = T)))
+    message(paste0(">>> The maximum value of Fc is = ",max(eset, na.rm = T)))
+    message(paste0(">>> The minimum value of Fc is = ",min(eset, na.rm = T)))
   }
 
   if(!is.null(max)){

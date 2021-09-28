@@ -156,6 +156,7 @@ tmescore_estimation_helper<-function(pdata = NULL,
     pdata[,"TMEscore"]<-pdata[,"TMEscoreA"]-pdata[,"TMEscoreB"]
   }
   pdata<-tibble::as_tibble(pdata)
+  pdata<-pdata[,-1]
   return(pdata)
 }
 ###################################################
