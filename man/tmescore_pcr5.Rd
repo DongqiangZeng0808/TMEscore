@@ -4,10 +4,10 @@
 \alias{tmescore_pcr5}
 \title{Title}
 \usage{
-tmescore_pcr5(eset)
+tmescore_pcr5(eset, scale = FALSE)
 }
 \arguments{
-\item{eset}{}
+\item{scale}{}
 }
 \value{
 

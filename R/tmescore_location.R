@@ -72,6 +72,16 @@ tmescore_location<-function(score,
     data(ref_score4)
     ref_score<-ref_score4
     binwidth = 0.55
+  }else if(method == "method5"){
+    data(ref_score5)
+    ref_score<-ref_score5
+    binwidth = 0.5
+
+  }else if(method == "method6"){
+    data(ref_score6)
+    ref_score<-ref_score6
+    binwidth = 5.5
+
   }
 
   ###############################
@@ -149,7 +159,7 @@ tmescore_location<-function(score,
       }else{
 
         p<-ggplot(ref_score, aes(x= !!target,fill= BOR)) +
-          geom_histogram(aes(y=..density..), binwidth=0.15, colour = "black")+
+          geom_histogram(aes(y=..density..), binwidth = 0.15, colour = "black")+
           scale_fill_manual(values= cols)+
           geom_density(alpha=.2, fill="grey", weight = 2)+
           labs(title=  paste0(target, " = ", pat_score),
