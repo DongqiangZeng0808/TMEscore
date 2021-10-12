@@ -101,11 +101,16 @@ tmescore_pcr<-function(eset, scale = T, sig = "pcr", method = "mean", max = 20, 
                                     save_data = save_eset,
                                     file_name = file_name)
 
+  if(method =="mean"){
+    score$TMEscoreA<-score$TMEscoreA*10
+    score$TMEscoreB<-score$TMEscoreB*10
+    score$TMEscore<-score$TMEscore*10 + 20
+  }else if(method=="PCA"){
+    score$TMEscoreA<-score$TMEscoreA
+    score$TMEscoreB<-score$TMEscoreB
+    score$TMEscore<-score$TMEscore+10
+  }
 
-  score$TMEscoreA<-score$TMEscoreA*10
-  score$TMEscoreB<-score$TMEscoreB*10
-
-  score$TMEscore<-score$TMEscore*10 + 20
 
   return(score)
 

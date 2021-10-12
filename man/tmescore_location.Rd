@@ -16,7 +16,8 @@ tmescore_location(
   tmescore_x = 7,
   tmescore_ab_x = 2,
   tmescore_y_index = -0.5,
-  tmescoreab_y_index = 0.5
+  tmescoreab_y_index = 0.5,
+  fig.type = "png"
 )
 }
 \arguments{
@@ -40,7 +41,7 @@ tmescore_location(
 
 \item{tmescore_ab_x}{default is 3.8}
 
-\item{tmescore_y_index}{}
+\item{fig.type}{default is png}
 }
 \value{
 

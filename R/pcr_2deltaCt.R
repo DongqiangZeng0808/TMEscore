@@ -153,7 +153,7 @@ pcr_2deltaCt<-function(data, Sample = "Sample", ref_gene = "ACTB", Dup.ID = c("D
   dat<-column_to_rownames(dat, var = "gene")
 
   #################################
-  write.csv(dat,file = paste0(abspath, "3-delta-Ct-data-frame.csv"))
+  write.csv(dat,file = paste0(abspath, "3-FoldChange-data-frame.csv"))
 
   for (i in 1:ncol(dat)) {
 
@@ -166,11 +166,11 @@ pcr_2deltaCt<-function(data, Sample = "Sample", ref_gene = "ACTB", Dup.ID = c("D
 
 
   if(max(dat, na.rm = T)>50){
-    message(paste0(">>> The maximum value of ddCt is = ",max(dat, na.rm = T), ". Data correction is preferred!!" ))
+    message(paste0(">>> The maximum value of FoldChange is = ",max(dat, na.rm = T), ". Data correction is recommended!!" ))
     message(">>> The maximum value can be limited by the parameter `max`.")
   }else{
-    message(paste0(">>> The maximum value of ddCt is = ",max(dat, na.rm = T)))
-    message(paste0(">>> The minimum value of ddCt is = ",min(dat, na.rm = T)))
+    message(paste0(">>> The maximum value of FoldChange is = ",max(dat, na.rm = T)))
+    message(paste0(">>> The minimum value of FoldChange is = ",min(dat, na.rm = T)))
   }
 
   # which.max(dat,na.rm = T)

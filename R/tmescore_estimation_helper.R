@@ -37,7 +37,13 @@ tmescore_estimation_helper<-function(pdata = NULL,
                                      save_data = FALSE,
                                      file_name = NULL){
 
-  message(paste0("\n", ">>> Calculating signature score using mean value of signature genes"))
+  if(method == "mean"){
+    message(paste0("\n", ">>> Calculating signature score using mean value of signature genes"))
+
+  }else if(method =="PCA"){
+    message(paste0("\n", ">>> Calculating signature score using `PCA` of signature genes"))
+
+  }
 
   #creat pdata if NULL
   if(is.null(pdata)){
@@ -104,14 +110,14 @@ tmescore_estimation_helper<-function(pdata = NULL,
 
   if(scale){
     if(sum(is.na(eset))>0){
-      message("Before scaling, NA will be repleased by mean value")
+      message(">>> Before scaling, NA will be repleased by mean value")
 
       teset<-as.data.frame(t(eset))
       for(i in c(1:ncol(teset))){
         teset[is.na(teset[,i]),i]<-mean(teset[!is.na(teset[,i]),i])
       }
       eset<-t(teset)
-      message(paste0("Counts of NA after replacement = "), sum(is.na(eset)))
+      message(paste0(">>> Counts of NA after replacement = "), sum(is.na(eset)))
 
       feas<-IOBR::feature_manipulation(data=eset,is_matrix = T)
       eset<-eset[rownames(eset)%in%feas,]
@@ -146,6 +152,9 @@ tmescore_estimation_helper<-function(pdata = NULL,
 
     if(method=="mean"){
       pdata[, sig] <- colMeans(tmp,na.rm = T)
+    }else if(method == "PCA"){
+      # message(paste0("Calculating siganture score using PCA function"))
+      pdata[, sig] <- sigScore(tmp,method = method)
     }else{
       pdata[, sig] <- colSums(tmp, na.rm = T)
     }

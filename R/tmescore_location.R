@@ -22,6 +22,7 @@
 #' @param tmescoreab_y_index
 #' @param method default is method2
 #' @param tmescore_y_index
+#' @param fig.type default is png
 #'
 #' @return
 #' @export
@@ -38,7 +39,8 @@ tmescore_location<-function(score,
                             tmescore_x = 7,
                             tmescore_ab_x = 2,
                             tmescore_y_index = -0.5,
-                            tmescoreab_y_index = 0.5){
+                            tmescoreab_y_index = 0.5,
+                            fig.type = "png"){
 
 
   score<-as.data.frame(score)
@@ -82,6 +84,11 @@ tmescore_location<-function(score,
     ref_score<-ref_score6
     binwidth = 5.5
 
+  }else if(method == "method7"){
+    data(ref_score7)
+    ref_score<-ref_score7
+    binwidth = 0.85
+
   }
 
   ###############################
@@ -97,6 +104,7 @@ tmescore_location<-function(score,
 
       var<-vars[j]
 
+      data("cutoff")
       cutoff_mono<-cutoff[cutoff$method==method&cutoff$regimen=="monotherapy"&cutoff$type==panel&cutoff$name==var,]$value
       cutoff_com<-cutoff[cutoff$method==method&cutoff$regimen=="combination"&cutoff$type==panel&cutoff$name==var,]$value
       cutoff_all<-cutoff[cutoff$method==method&cutoff$regimen=="All"&cutoff$type==panel&cutoff$name==var,]$value
@@ -199,7 +207,7 @@ tmescore_location<-function(score,
 
 
       if(showplot) print(p)
-      ggsave(p,filename =paste0(i,"-",j,"-",pat,"-",var,".png"),
+      ggsave(p,filename =paste0(i,"-",j,"-",pat,"-",var,".",fig.type),
              width = 7.64,height = 5.76, path = path, dpi = 300)
 
     }
