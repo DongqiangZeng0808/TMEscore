@@ -40,7 +40,7 @@ tmescore_location<-function(score,
                             tmescore_ab_x = 2,
                             tmescore_y_index = -0.5,
                             tmescoreab_y_index = 0.5,
-                            fig.type = "png"){
+                            fig.type = "pdf"){
 
 
   score<-as.data.frame(score)
