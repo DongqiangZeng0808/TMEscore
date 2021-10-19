@@ -185,33 +185,32 @@ tmescore_location<-function(score,
                      linetype="dashed",color = cols2[1], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[1],
                    x = tmescore_ab_x, y = 1.1+tmescoreab_y_index, hjust = 0,
-                   label = paste0('Best cutoff of all = ', cutoff_all), size=4.5)+
+                   label = paste0('Best cutoff of all = ', cutoff_all), size=3)+
 
           geom_vline(aes(xintercept = cutoff_mono),
                      linetype="dashed",color =  cols2[2], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[2],
                    x = tmescore_ab_x, y=1+tmescoreab_y_index, hjust = 0,
-                   label = paste0('Best cutoff of mono = ', cutoff_mono), size=4.5)+
+                   label = paste0('Best cutoff of mono = ', cutoff_mono), size=3)+
 
           geom_vline(aes(xintercept = cutoff_com),
                      linetype="dashed",color = cols2[3], size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= cols2[3],
                    x = tmescore_ab_x, y=0.9+tmescoreab_y_index,hjust = 0,
-                   label = paste0('Best cutoff of com = ', cutoff_com), size=4.5)+
+                   label = paste0('Best cutoff of com = ', cutoff_com), size=3)+
           geom_vline(aes(xintercept = pat_score),
                      linetype="dashed",color = "black", size = 0.70)+
           annotate(geom = "text", fontface = "plain", color= "black",
                    x = tmescore_ab_x, y=1.25+tmescoreab_y_index,hjust = 0,
-                   label = paste0( var, ' of patient = ', pat_score),size = 4.5)
+                   label = paste0( var, ' of patient = ', pat_score),size = 3)
       }
 
 
       if(showplot) print(p)
-      ggsave(p,filename =paste0(i,"-",j,"-",pat,"-",var,".",fig.type),
-             width = 7.64,height = 5.76, path = path, dpi = 300)
+      ggplot2:: ggsave(plot = p, filename = paste0(i,"-",j,"-",pat,"-",var,".",fig.type),
+             width = 7.64, height = 5.76, path = path)
 
     }
-
 
   }
 
