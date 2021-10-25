@@ -17,7 +17,7 @@ tmescore_location(
   tmescore_ab_x = 2,
   tmescore_y_index = -0.5,
   tmescoreab_y_index = 0.5,
-  fig.type = "png"
+  fig.type = "pdf"
 )
 }
 \arguments{

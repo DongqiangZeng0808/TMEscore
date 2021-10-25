@@ -22,7 +22,7 @@
 #' @param tmescoreab_y_index
 #' @param method default is method2
 #' @param tmescore_y_index
-#' @param fig.type default is png
+#' @param fig.type default is jpg and pdf
 #'
 #' @return
 #' @export
@@ -40,15 +40,20 @@ tmescore_location<-function(score,
                             tmescore_ab_x = 2,
                             tmescore_y_index = -0.5,
                             tmescoreab_y_index = 0.5,
-                            fig.type = "pdf"){
+                            fig.type =c( "jpg","pdf")){
 
 
   score<-as.data.frame(score)
+
   if(!is.null(path)){
     if(!file.exists(path)) dir.create(path)
+    file_name<- mydb::creat_folder(path)
+    abspath<- file_name$abspath
   }else{
     path<- "TMEscore-location"
     if(!file.exists(path)) dir.create(path)
+    file_name<- mydb::creat_folder(path)
+    abspath<- file_name$abspath
   }
 
   if(is.null(cols)){
@@ -204,11 +209,25 @@ tmescore_location<-function(score,
                    x = tmescore_ab_x, y=1.25+tmescoreab_y_index,hjust = 0,
                    label = paste0( var, ' of patient = ', pat_score),size = 3)
       }
-
-
       if(showplot) print(p)
-      ggplot2:: ggsave(plot = p, filename = paste0(i,"-",j,"-",pat,"-",var,".",fig.type),
-             width = 7.64, height = 5.76, path = path)
+
+      Ipaper:: write_fig(p, file =  paste0(abspath, i,"-",j,"-",pat,"-",var,".",fig.type),
+                         width = 7.64, height = 5.8,res = 300,
+                         show = FALSE, devices = c("jpg", "pdf"))
+
+      # if(fig.type=="png"){
+      #
+      #  png(filename = paste0(abspath, i,"-",j,"-",pat,"-",var,".",fig.type),
+      #      width = 764, height = 576)
+      #  print(p)
+      #  .garbage <- dev.off()
+      #
+      # }else{
+      #   if(showplot) print(p)
+      #   ggplot2:: ggsave(plot = p, filename = paste0(i,"-",j,"-",pat,"-",var,".",fig.type),
+      #                    width = 7.64, height = 5.76, path = path)
+      # }
+
 
     }
 

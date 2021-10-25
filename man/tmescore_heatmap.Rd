@@ -16,21 +16,7 @@ tmescore_heatmap(
 )
 }
 \arguments{
-\item{score}{}
-
-\item{pcr_data}{}
-
 \item{BOR}{}
-
-\item{patient_ids}{}
-
-\item{batch}{}
-
-\item{width}{}
-
-\item{index}{}
-
-\item{fig.path}{}
 }
 \value{
 
