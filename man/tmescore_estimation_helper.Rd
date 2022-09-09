@@ -51,9 +51,6 @@ data frame with pdata and signature scores for gene sets; signatures in columns,
 \description{
 Calculating TMEscore using PCR data
 }
-\examples{
-
-}
 \author{
 Dongqiang Zeng
 }

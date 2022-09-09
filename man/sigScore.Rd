@@ -25,6 +25,4 @@ Calculate siganture score using PCA function
 }
 \author{
 Dorothee Nickles, Dongqiang Zeng
-
-Dorothee Nickles, Dongqiang Zeng
 }
