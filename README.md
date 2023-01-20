@@ -12,7 +12,7 @@ clinicopathological features to establish the
 *Tumor Microenvironment Characterization in Gastric Cancer Identifies
 Prognostic and Immunotherapeutically Relevant Gene Signatures*.
 
-![TMEscore logo](./man/TMEscore-honor.png)
+![TMEscore logo](./man/TMEscore-honors.png)
 
 TMEscore is an R package to estimate tumor microenvironment score.
 Provides functionality to calculate Tumor microenvironment (TME) score
@@ -35,9 +35,15 @@ Main documentation is on the `tmescore` function in the package:
 ``` r
 library('TMEscore')
 #> 载入需要的程辑包：survival
+#> Warning: 程辑包'survival'是用R版本4.2.1 来建造的
 #> 载入需要的程辑包：survminer
 #> 载入需要的程辑包：ggplot2
 #> 载入需要的程辑包：ggpubr
+#> 
+#> 载入程辑包：'survminer'
+#> The following object is masked from 'package:survival':
+#> 
+#>     myeloma
 #> TMEscore v0.1.4  For help: https://github.com/DongqiangZeng0808/TMEscore
 #> 
 #>  If you use TMEscore in published research, please cite:
@@ -52,6 +58,8 @@ library('TMEscore')
 #>  DOI: 10.1158/2326-6066.CIR-18-0436 
 #>  PMID: 30842092
 #>  --------------------------------
+library("ggplot2")
+library("patchwork")
 ```
 
 Example
@@ -88,12 +96,27 @@ p<-ggplot(tmescore,aes(x= subtype,y=TMEscore,fill=subtype))+
 
 comparision<-combn(unique(as.character(tmescore$subtype)), 2, simplify=F)
 
-p+theme_light()+
-  stat_compare_means(comparisons = comparision,size=2.5)+
-  stat_compare_means(size=2.5)
+p1<-p+theme_light()+
+    stat_compare_means(comparisons = comparision,size=2.5)+
+    stat_compare_means(size=2.5)
+
+# survival analysis
+fit<- survfit(Surv(time, status) ~ TMEscore_binary, data = tmescore)
+p2<-ggsurvplot(fit, 
+               conf.int = TRUE,
+               palette = c("#FF9E29", "#86AA00"),
+               risk.table = TRUE, 
+               risk.table.col = "strata")
+p2<-print(p2)
 ```
 
 <img src="man/figuresunnamed-chunk-5-1.png" width="100%" />
+
+``` r
+p1+p2
+```
+
+<img src="man/figuresunnamed-chunk-5-2.png" width="100%" />
 
 ### Citation
 
@@ -113,4 +136,5 @@ If you use TMEscore in published research, please cite:
 
 ### Contact
 
-E-mail any questions to <dongqiangzeng0808@gmail.com>
+E-mail any questions to <dongqiangzeng0808@gmail.com> or
+<interlaken0808@163.com>

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ### 1.Introduction
 TME infiltration patterns were determined and systematically correlated with TME cell phenotypes, genomic traits, and patient clinicopathological features to establish the [TMEscore](https://cancerimmunolres.aacrjournals.org/content/7/5/737): *Tumor Microenvironment Characterization in Gastric Cancer Identifies Prognostic and Immunotherapeutically Relevant Gene Signatures*.
 
-![TMEscore logo](./man/TMEscore-honor.png)
+![TMEscore logo](./man/TMEscore-honors.png)
 
 
 TMEscore is an R package to estimate tumor microenvironment score. Provides functionality to calculate Tumor microenvironment (TME) score using PCA or z-score.
@@ -36,6 +36,8 @@ Main documentation is on the `tmescore` function in the package:
 
 ```{r}
 library('TMEscore')
+library("ggplot2")
+library("patchwork")
 ```
 
 Example
@@ -46,7 +48,7 @@ tmescore<-tmescore(eset     = eset_stad, #expression data
                    classify = T) #if true, survival data must be provided in pdata
 head(tmescore)
 ```
-```{r,fig.height=4, fig.width= 3, dpi=300}
+```{r,fig.height=3, fig.width= 6, dpi=300}
 #remove observation with missing value
 tmescore<-tmescore[!is.na(tmescore$subtype),]
 
@@ -56,9 +58,19 @@ p<-ggplot(tmescore,aes(x= subtype,y=TMEscore,fill=subtype))+
 
 comparision<-combn(unique(as.character(tmescore$subtype)), 2, simplify=F)
 
-p+theme_light()+
-  stat_compare_means(comparisons = comparision,size=2.5)+
-  stat_compare_means(size=2.5)
+p1<-p+theme_light()+
+    stat_compare_means(comparisons = comparision,size=2.5)+
+    stat_compare_means(size=2.5)
+
+# survival analysis
+fit<- survfit(Surv(time, status) ~ TMEscore_binary, data = tmescore)
+p2<-ggsurvplot(fit, 
+               conf.int = TRUE,
+               palette = c("#FF9E29", "#86AA00"),
+               risk.table = TRUE, 
+               risk.table.col = "strata")
+p2<-print(p2)
+p1+p2
 ```
 
 ### Citation
