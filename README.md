@@ -101,22 +101,22 @@ p1<-p+theme_light()+
     stat_compare_means(size=2.5)
 
 # survival analysis
-fit<- survfit(Surv(time, status) ~ TMEscore_binary, data = tmescore)
+colnames(tmescore)[which(colnames(tmescore)=="TMEscore_binary")]<-"score"
+fit<- survfit(Surv(time, status) ~ score, data = tmescore)
 p2<-ggsurvplot(fit, 
-               conf.int = TRUE,
-               palette = c("#FF9E29", "#86AA00"),
+               conf.int = FALSE,
+               palette = c('#374E55FF', '#DF8F44FF'),
                risk.table = TRUE, 
+               pval = TRUE,
                risk.table.col = "strata")
-p2<-print(p2)
+p2<-list(p2)
+p2 <- arrange_ggsurvplots(p2, print = FALSE, ncol = 1, nrow = 1)
+
+# print plots
+(p1|p2)+plot_layout(ncol = 2, widths = c(1,2))
 ```
 
 <img src="man/figuresunnamed-chunk-5-1.png" width="100%" />
-
-``` r
-p1+p2
-```
-
-<img src="man/figuresunnamed-chunk-5-2.png" width="100%" />
 
 ### Citation
 
